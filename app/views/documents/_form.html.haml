@@ -1,0 +1,21 @@
+- if @document.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@document.errors.count, "error") 
+      prohibited this document from being saved:
+    %ul
+      - @document.errors.full_messages.each do |message|
+        %li= message
+.form-wrapper
+  = simple_form_for @document, html: { multipart: true } do |f|
+    .form-group
+      = f.file_field :doc_file
+    -if @projects.any?
+      .form-group
+        = f.association :projects,   as: :check_boxes
+    .form-group.text-center
+      = f.input :title
+    .form-group.text-center
+      = f.input :description
+    .form-group.text-center
+      = f.button :submit, class: 'btn-success'

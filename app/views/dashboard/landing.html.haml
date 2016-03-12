@@ -1,0 +1,44 @@
+.dashboard-container
+  .col-xxs.12.col-md-3
+    .panel.panel-default.dashboard-card.user
+      .user-header
+        =link_to image_tag(current_user.avatar, class: 'img-circle'), current_user
+      .panel-body
+        %ul
+          %li.username
+            =link_to current_user.username, current_user
+          %li= current_user.email
+          %li= current_user.title
+          %li= current_user.company
+    .projects.panel.panel-default.dashboard-card
+      .panel-heading
+        SEND INVITE
+      .panel-body
+        = link_to 'New document', new_document_path
+    .projects.panel.panel-default.dashboard-card
+      .panel-heading
+        NOTIFICATIONS
+      .panel-body
+        = link_to 'New document', new_document_path
+  .col-xxs.12.col-md-6.dashboard-card
+    .projects.panel.panel-default.dashboard-card
+      .panel-body
+        %button.dashboard_add_doc
+          ADD DOCUMENT
+    .panel.panel-default
+      .panel-heading
+        =link_to 'DOCUMENTS', documents_path
+      .panel-body
+        -if @documents.exists?
+          - @documents.each do |permission|
+            = render partial: 'documents/document_list', locals: {p: permission}
+  .col-xxs.12.col-md-3.dashboard-card
+    .projects.panel.panel-default
+      .panel-heading
+        =link_to 'PROJECTS', projects_path
+      .panel-body
+        -if @projects.exists?
+          - @projects.each do |project|
+            = render partial: 'projects/project_list', locals: {p: project}
+        -else
+          =link_to('ADD A PROJECT', new_project_path)

@@ -1,0 +1,14 @@
+-breadcrumb :projects
+.container-fluid
+  .row
+    .col-sm-12
+      %h4 PROJECTS
+      %p= link_to 'New project', new_project_path
+      -if @projects.exists?
+        - @projects.each do |p|
+          = render partial: 'project_list_full', locals: {project: p}
+          %br/
+      -else 
+        %h3 NO PROJECTS
+
+

@@ -1,0 +1,23 @@
+.col-md-12.document_list
+  %ul
+    %li
+      =link_to(d.title, document_path(d), class: "document_title")
+      (#{number_to_human_size(d.file_size)})
+    %li.filename
+      = d.original_filename
+      uploaded
+      = d.created_at.strftime("%b %d, %Y")
+      by
+      = d.user.username
+    %li.description
+      = d.description
+  %ul.toolbar
+    %li
+      = link_to document_path(d), :method => :delete, :data => { :confirm => 'Are you sure?' }, "data-original-title" => "Delete" do
+        %i.fa.fa-trash
+    %li
+      =link_to document_url(d) do
+        %i.fa.fa-download
+    %li
+      =link_to pdfjs.full_path(file: document_url(d)) do
+        %i.fa.fa-eye

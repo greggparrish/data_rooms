@@ -1,0 +1,11 @@
+-breadcrumb :team, @team
+.container-fluid
+  .row
+    .col-lg-12
+      %p#notice= notice
+      = image_tag @team.thumbnail
+      %h1= @team.title
+      %p= @team.description
+      %p= link_to("EDIT", edit_team_path(@team))
+
+

@@ -1,0 +1,30 @@
+mysql2: &mysql2
+  adapter: mysql2
+  encoding: utf8
+
+development: &development
+  <<: *mysql2
+  host:     <%= ENV['DATA_ROOMS_DB_HOST']     %>
+  database: <%= ENV['DATA_ROOMS_DB_DATABASE'] %>
+  username: <%= ENV['DATA_ROOMS_DB_USER']     %>
+  password: <%= ENV['DATA_ROOMS_DB_PASSWORD'] %>
+  min_messages: warning
+  pool: 2
+  timeout: 5000
+
+staging:
+  <<: *development
+
+test:
+  <<: *mysql2
+  host:     <%= ENV['DATA_ROOMS_DB_HOST']     %>
+  database: <%= ENV['DATA_ROOMS_DB_DATABASE'] %>
+  username: <%= ENV['DATA_ROOMS_DB_USER']     %>
+  password: <%= ENV['DATA_ROOMS_DB_PASSWORD'] %>
+
+production:
+  <<: *mysql2
+  host:     <%= ENV['DATA_ROOMS_DB_HOST']     %>
+  database: <%= ENV['DATA_ROOMS_DB_DATABASE'] %>
+  username: <%= ENV['DATA_ROOMS_DB_USER']     %>
+  password: <%= ENV['DATA_ROOMS_DB_PASSWORD'] %>

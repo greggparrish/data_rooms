@@ -1,0 +1,13 @@
+-breadcrumb :documents
+.container-fluid
+  .row
+    .col-sm-12
+      %h4 DOCUMENTS
+      = link_to 'New document', new_document_path
+      -if @documents.exists?
+        .container
+          .row
+            - @documents.each do |document|
+              = render partial: 'document_list_full', locals: {d: document}
+      -else 
+        %h3 NO DOCS

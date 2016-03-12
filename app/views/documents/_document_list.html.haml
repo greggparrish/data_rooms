@@ -1,0 +1,20 @@
+%ul.documents
+  %li.icon
+    =link_to document_path(p.document.id) do
+      -filetype_icon(p.document.file_content_type)
+  %li.listtitle
+    =link_to(p.document.title.upcase, document_path(p.document.id), class: 'listtitle')
+  %li.date
+    %strong
+      = "Project".pluralize(p.document.projects.count)+":"
+      != p.document.projects.collect { |pp| link_to pp.title, project_path(pp.id) }.join(",")
+  %li.filename
+    %strong Filename:
+    = p.document.original_filename
+    (#{number_to_human_size(p.document.file_size)})
+  %li.date
+    %strong Uploaded:
+    by 
+    = p.user.username
+    on
+    = p.created_at.strftime("%b %d, %Y")

@@ -1,0 +1,29 @@
+.document_list {
+  background-color: $white;
+  padding: 5px;
+  margin: 10px;
+  overflow: auto;
+  ul {
+    float: left;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    > li {
+      &.filename {
+        color: $text-muted;
+        font-size: .8em;
+      }
+      &.description {
+
+      }
+    }
+    &.toolbar {
+      float: right;
+      display: block;
+      > li {
+        display: inline;
+        padding: 0 10px;
+      }
+    }
+  }
+}

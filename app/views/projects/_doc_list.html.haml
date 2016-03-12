@@ -1,0 +1,24 @@
+= link_to new_document_path do
+  %icon.fa.fa-plus-circle
+    Add Document
+%table.table.table-striped.sortable.doc_list
+  %thead
+    %tr 
+      %th Title
+      %th Description
+      %th File Type
+      %th.sorttable_nosort Edit
+      %th.sorttable_nosort Delete
+      - @documents.each do |d|
+        %tr
+          %td= link_to d.title, pdfjs.full_path(file: d.file)
+          %td= d.description
+          %td
+            -filetype_icon(d.file_content_type)
+          %td 
+            = link_to edit_document_path(d) do
+              %icon.fa.fa-edit
+          %td 
+            = link_to d, method: :delete, data: { confirm: 'Are you sure?' } do
+              %icon.fa.fa-trash
+

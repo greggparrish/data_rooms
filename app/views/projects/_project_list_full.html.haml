@@ -1,0 +1,6 @@
+=image_tag(project.thumbnail)
+%p=link_to(project.title.upcase, project_path(project)) 
+= link_to edit_project_path(project) do
+  EDIT
+= link_to project_path(project), :method => :delete, :data => { :confirm => 'Are you sure?' }, "data-original-title" => "Delete" do
+  %i.fa.fa-trash

@@ -1,0 +1,14 @@
+-breadcrumb :teams
+.container-fluid
+  .row
+    .col-sm-12
+      %h4 TEAMS
+      = link_to 'New team', new_team_path
+      -if @teams.exists?
+        .container
+          .row
+            - @teams.each do |t|
+              = render partial: 'team_list_full', locals: {team: t}
+      -else 
+        %h3 No Teams
+

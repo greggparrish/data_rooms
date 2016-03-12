@@ -1,0 +1,43 @@
+//fonts
+$font_0: Raleway;
+$font_1: Helvetica Neue;
+$font_2: Helvetica;
+$font_3: Arial;
+$font_4: sans-serif;
+$font_6: Roboto Slab;
+$font_8: cursive;
+
+$text-shadow: 0 0 0.6em #000;
+
+h1,h2,h3,h4,h5,h6 {
+  text-transform: uppercase;
+  font-family: $font_1, $font_2, $font_3, $font_4;
+  font-weight: 700;
+}
+.text-muted {
+  color: $light_grey;
+}
+.text-primary {
+  color: $light_purple;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.75;
+  &.large {
+    font-size: 16px;
+  }
+}
+a {
+  outline: 0;
+  color: $purple;
+  &:hover, &:focus, &:active,&.active {
+    outline: 0;
+    color: $red_dark;
+    text-decoration: none;
+  }
+  &.listtitle {
+    font-family: $font_6;
+    font-size: 1.2em;
+  }
+}

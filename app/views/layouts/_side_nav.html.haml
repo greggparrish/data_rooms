@@ -1,0 +1,46 @@
+.sidebar{:role => "navigation"}
+  .sidebar-nav.navbar-collapse
+    %ul#side-menu.nav
+      %li.sidebar-search
+        .input-group.custom-search-form
+          %input.form-control{:placeholder => "Search...", :type => "text"}/
+          %span.input-group-btn
+            %button.btn.btn-default{:type => "button"}
+              %i.fa.fa-search
+        / /input-group
+      = image_tag(current_user.avatar, class: 'img-circle img-responsive')
+      %h4
+        =current_user.username
+      %h5
+        =current_user.title
+      %h5
+        =current_user.company
+      =link_to "Edit profile", edit_user_registration_path
+      %li
+        =link_to dashboard_path do
+          %i.fa.fa-th
+          Dashboard
+      - if @proj_list.size > 1
+        %li.dropdown
+          %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"} 
+          %i.fa.fa-tasks
+            Projects
+            %b.caret
+            %ul.dropdown-menu{"role" => "menu"}
+              %li
+                = link_to "See all", projects_path
+                - @proj_list.each do |p|
+                  %li= link_to p.title, project_path(p)
+      - else  
+        %li
+          =link_to projects_path do
+            %i.fa.fa-tasks
+            Projects
+          %li
+            =link_to documents_path do
+              %i.fa.fa-file-text-o
+              Documents
+          %li
+            =link_to dashboard_path do
+              %i.fa.fa-users
+              Teams

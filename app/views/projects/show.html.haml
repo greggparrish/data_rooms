@@ -1,0 +1,10 @@
+-breadcrumb :project, @project
+#wrapper
+  .row
+    .col-lg-12
+      %p#notice= notice
+      = image_tag @project.thumbnail
+      %h1= @project.title
+      %p= @project.description
+      %p= link_to("EDIT", edit_project_path(@project))
+

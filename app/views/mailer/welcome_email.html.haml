@@ -1,0 +1,56 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    =stylesheet_link_tag "emails"
+  %body
+    %table.body
+      %tr
+        %td.center{:align => "center", :valign => "top"}
+          %center
+            %table.row.header
+              %tr
+                %td.center{:align => "center"}
+                  %center
+                    %table.container
+                      %tr
+                        %td.wrapper.last
+                          %table.twelve.columns
+                            %tr
+                              %td.expander
+            %table.container
+              %tr
+                %td
+                  %table.row
+                    %tr
+                      %td.wrapper.last
+                        %table.twelve.columns
+                          %tr
+                            %td
+                              %h1 HELLO, #{@user.username.upcase}!
+                              %p.lead Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae.
+                              %p Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae. consequat vel lacus. Sed iaculis pulvinar ligula, ornare fringilla ante viverra et. In hac habitasse platea dictumst. Donec vel orci mi, eu congue justo. Integer eget odio est, eget malesuada lorem. Aenean sed tellus dui, vitae viverra risus. Nullam massa sapien, pulvinar eleifend fringilla id, convallis eget nisi. Mauris a sagittis dui. Pellentesque non lacinia mi. Fusce sit amet libero sit amet erat venenatis sollicitudin vitae vel eros. Cras nunc sapien, interdum sit amet porttitor ut, congue quis urna.
+                            %td.expander
+                  %table.row.callout
+                    %tr
+                      %td.wrapper.last
+                        %table.twelve.columns
+                          %tr
+                            %td.panel
+                              %p
+                                Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae.
+                                %a{:href => "#"} Click it! »
+                            %td.expander
+                  %table.row
+                    %tr
+                      %td.wrapper.last
+                        %table.twelve.columns
+                          %tr
+                            %td{:align => "center"}
+                              %center
+                                %p{:style => "text-align:center;"}
+                                  %a{:href => "#"} Terms
+                                  |
+                                  %a{:href => "#"} Privacy
+                                  |
+                                  %a{:href => "#"} Unsubscribe
+                            %td.expander

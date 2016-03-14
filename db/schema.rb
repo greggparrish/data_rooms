@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310172238) do
+ActiveRecord::Schema.define(version: 20160314184534) do
 
   create_table "assets", force: :cascade do |t|
     t.integer  "document_id", limit: 4
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20160310172238) do
 
   add_index "assets", ["document_id"], name: "index_assets_on_document_id", using: :btree
   add_index "assets", ["project_id"], name: "index_assets_on_project_id", using: :btree
+
+  create_table "doctrees", force: :cascade do |t|
+    t.integer  "document_id", limit: 4
+    t.integer  "folder_id",   limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "documents", force: :cascade do |t|
     t.datetime "created_at",                      null: false
@@ -37,6 +44,15 @@ ActiveRecord::Schema.define(version: 20160310172238) do
   end
 
   add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
+
+  create_table "folders", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "slug",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "folders", ["slug"], name: "index_folders_on_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
@@ -116,8 +132,6 @@ ActiveRecord::Schema.define(version: 20160310172238) do
     t.string   "title",                  limit: 255
     t.string   "company",                limit: 255
     t.string   "avatar",                 limit: 255
-    t.string   "avatar_content_type",    limit: 255
-    t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
     t.string   "name",                   limit: 255
     t.string   "slug",                   limit: 255

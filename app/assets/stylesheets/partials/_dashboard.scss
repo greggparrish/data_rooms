@@ -1,60 +1,58 @@
 .dashboard-container {
   background-color: $black-haze;
-  height: 100%;
+  height: 90%;
   padding: 15px;
   overflow: auto;
-  .panel {
-    border-radius: 0;
-    &.dashboard-card.user {
+  .sidebar-left {
+    display: none; 
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+    .user {
       font-family: $font_3;
-      .user-header {
-        padding: 5px;
-        img {
-          margin: 0 auto;
-          display: block;
-          width: 150px;
-        }
+      img {
+        margin: 0 auto;
+        display: block;
+        width: 150px;
       }
-      //@media(max-width:768px) {
-        //  display: none; 
-      //}
     }
-    .panel-heading {
-      background-color: $white;
-    }
-    .panel-body {
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        &.documents {
-          padding: 15px 0;
-          border-bottom: 1px solid $light-grey;
-          margin-left: 30px;
-          > li.icon {
-            margin: 8px 15px 0 -20px;
-            font-size: 3em;
-            float: left;
-            clear: both;
-          }
-          > li.date, > li.filename {
-            color: $text-muted;
-            font-size: .8em;
-          }
-        }
-        &.projects {
-          padding: 10px 0;
-          border-bottom: 1px solid $light-grey;
-          overflow: auto;
-          img {
-            width: 100%;
-            padding-bottom: 10px;
-          }
-          > li {
-            text-align: center;
-          }
-        }
+  }
+  .documents {
+    padding: 0 5%;
+    ul.doc-toolbar {
+      width: 100%;
+      li {
+        display: inline-block;
       }
+    }
+    ul.dashdocs {
+      padding: 10px;
+      border-bottom: 1px solid $light-grey;
+      > li.icon {
+        margin: 0 15px 0 -20px;
+        font-size: 3em;
+        float: left;
+        clear: both;
+      }
+      > li.date, > li.filename {
+        color: $text-muted;
+        font-size: .8em;
+      }
+    }
+    @include media-breakpoint-up(md) {
+      border-left: 1px solid $light-grey;
+      border-right: 1px solid $light-grey;
+    }
+  }
+  .projects {
+    padding: 10px 20px;
+    img {
+      width: 30%;
+      float: left;
+      display: block;
+      padding-right: 10px;
+    }
+    ul > li {
     }
   }
 }

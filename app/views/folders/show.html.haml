@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @folder.title
+
+= link_to 'Edit', edit_folder_path(@folder)
+\|
+= link_to 'Back', folders_path

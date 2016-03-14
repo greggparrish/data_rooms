@@ -1,5 +1,5 @@
 .col-md-12.document_list
-  %ul
+  %ul.list-unstyled
     %li
       =link_to(d.title, document_path(d), class: "document_title")
       (#{number_to_human_size(d.file_size)})

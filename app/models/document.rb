@@ -21,6 +21,8 @@ class Document < ActiveRecord::Base
   has_many :users, through: :permissions
   has_many :assets, dependent: :delete_all
   has_many :projects, through: :assets
+  has_many :doctrees, dependent: :delete_all
+  has_many :folders, through: :doctrees
   belongs_to :user
 
   validates :doc_file, :title, presence: true

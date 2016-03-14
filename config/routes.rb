@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'teams/new'
-
-  get 'teams/create'
-
-  get 'teams/show'
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, :controllers => { registrations: 'registrations' }, path: "accounts", path_names: { 
     sign_in: 'login', 
@@ -19,8 +12,6 @@ Rails.application.routes.draw do
 
   #Static pages
   root "static_pages#home"
-  get "contact" => "static_pages#contact" 
-  get "about" => "static_pages#about" 
 
   #Dashboard
   get "dashboard" => "dashboard#landing" 
@@ -28,7 +19,9 @@ Rails.application.routes.draw do
   #PDF Viewer
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 
+  resources :doctrees
   resources :documents
+  resources :folders
   resources :permissions
   resources :projects
   resources :teams

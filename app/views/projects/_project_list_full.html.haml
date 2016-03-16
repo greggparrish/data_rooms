@@ -1,0 +1,8 @@
+.row
+  .col-sm-6
+    .col-sm-12.col-md-4
+      =link_to project_path(p) do
+        =image_tag(p.thumbnail)
+    .col-sm-12.col-md-4
+      =link_to(p.title, project_path(p))
+

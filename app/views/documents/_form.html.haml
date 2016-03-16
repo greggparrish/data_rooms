@@ -10,9 +10,13 @@
   = simple_form_for @document, html: { multipart: true } do |f|
     .form-group
       = f.file_field :doc_file
-    -if @projects.any?
-      .form-group
-        = f.association :projects,   as: :check_boxes
+    -if pid
+      = f.hidden_field :project_id, value: pid
+      = f.hidden_field :modal, value: 'true'
+    -else
+      -if @projects.any?
+        .form-group
+          = f.association :projects,   as: :check_boxes
     .form-group.text-center
       = f.input :title
     .form-group.text-center

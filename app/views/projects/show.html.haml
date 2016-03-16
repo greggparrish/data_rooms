@@ -1,18 +1,34 @@
 -breadcrumb :project, @project
 .container-fluid.project_page
   .row
-    .col-sm-12.project-header
-      %h6= @project.title
     .col-sm-12.col-md-2.pull-left.project-sidebar
       = image_tag @project.thumbnail, class: 'img-circle'
       %p= @project.description
       %p= link_to("EDIT", edit_project_path(@project))
     .col-sm-12.col-md-10
+      .col-sm-12.project-header
+        %h6= @project.title
+      // New folder modal
+      %button.btn.btn-primary{"data-target" => ".new-document-modal", "data-toggle" => "modal"} NEW DOCUMENT
+      .modal.fade.new-document-modal{"aria-hidden" => "true", "aria-labelledby" => "newDocumentModal", :role => "dialog", :tabindex => "-1"}
+        .modal-dialog.modal-lg
+          .modal-content
+            =render "documents/form", pid: @project.id
+      // New document modal
+      %button.btn.btn-primary{"data-target" => ".new-project-modal", "data-toggle" => "modal"} NEW FOLDER
+      .modal.fade.new-project-modal{"aria-hidden" => "true", "aria-labelledby" => "newProjectModal", :role => "dialog", :tabindex => "-1"}
+        .modal-dialog.modal-lg
+          .modal-content
+            =render "folders/form", project_id: @project.id
       %table.table.table-striped
-        %th 
-        %th DL
-        %th VIEW
-        %th
+        - @folders.each do |f|
+          %tr
+            %td
+              %i.fa.fa-folder
+            %td
+              =link_to(f.title.upcase, folder_path(f))
+            %td
+
         %form
           - @documents.each do |d|
             = render partial: 'project_table', locals: {d: d}

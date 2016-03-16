@@ -1,8 +1,11 @@
-= simple_form_for(@folder) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :title
-
-  .form-actions
-    = f.button :submit
+.container
+  .row
+    .col-sm-12
+      = simple_form_for(@folder) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.hidden_field :project_id, value: project_id
+        .form-inputs
+          = f.input :title
+        .form-actions
+          = f.button :submit

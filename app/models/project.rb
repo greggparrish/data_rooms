@@ -12,10 +12,12 @@
 #
 
 class Project < ActiveRecord::Base
+  before_create :randomize_id
   has_many :stakeholders, dependent: :delete_all
   has_many :users, through: :stakeholders
   has_many :assets, dependent: :delete_all
   has_many :documents, through: :assets
+  has_many :folders
   validate :legit_filetype
   validates :title, :presence => true
 
@@ -33,6 +35,12 @@ class Project < ActiveRecord::Base
   private
   def should_generate_new_friendly_id?
       title_changed?
+  end
+
+  def randomize_id
+    begin
+      self.id = SecureRandom.random_number(1_000_000_000)
+    end while User.where(id: self.id).exists?
   end
 
   # Check if filetype is acceptable (jpg, png, gif) and not funny business

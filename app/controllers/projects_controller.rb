@@ -13,6 +13,7 @@
 
 class ProjectsController < ApplicationController  
   before_action :authenticate_user!
+  before_action :set_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -22,6 +23,10 @@ class ProjectsController < ApplicationController
 
   def show
     @documents = @project.documents
+    @document = @user.documents.new
+    @folders = @project.folders
+    @folder = Folder.new
+    @projects = @user.projects.group(:folder)
   end
 
   def new
@@ -57,6 +62,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+  def set_user
+    @user = current_user
+  end
+
   def set_project
     @project = Project.friendly.find(params[:id])
   end

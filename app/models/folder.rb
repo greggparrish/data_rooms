@@ -1,4 +1,5 @@
 class Folder < ActiveRecord::Base
-  has_many :doctrees, dependent: :delete_all
+  belongs_to :project
   has_many :documents, through: :doctrees
+  has_many :doctrees, dependent: :delete_all
 end

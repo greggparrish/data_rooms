@@ -1,8 +1,15 @@
 nav.navbar {
-  background: $alto;
+  background: $dark_grey;
   font-family: $font_4; 
-  height: 50px;
+  height: 45px;
   overflow: hidden;
+  margin: 0 auto;
+  a {
+    color: $light-grey;
+    &:hover,&:active {
+      color: $alto;
+    }
+  }
   .container {
     margin-top: -10px;
     .navbar-header {
@@ -10,9 +17,11 @@ nav.navbar {
     }
   }
   .navbar-brand {
+    background-color: $dr_purple;
     font-family: $font_0;
     font-weight:900;
-    color: $light-purple;
+    padding: 10px;
+    border-right: 1px solid $light-grey;
   }
   ul { 
     float: right;

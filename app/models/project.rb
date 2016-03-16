@@ -31,6 +31,10 @@ class Project < ActiveRecord::Base
     ]
   end
   private
+  def should_generate_new_friendly_id?
+      title_changed?
+  end
+
   # Check if filetype is acceptable (jpg, png, gif) and not funny business
   def legit_filetype
     errors.add(:thumbnail, 'Invalid content type') unless Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: self.thumbnail.path).chomp.in?(['image/jpeg', 'image/png', 'image/gif'])

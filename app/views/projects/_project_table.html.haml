@@ -1,0 +1,15 @@
+%tr
+  %td
+    =d.title.upcase
+    %br= d.original_filename
+  %td
+    =link_to document_url(d) do
+      %i.fa.fa-download
+  %td
+    =link_to pdfjs.full_path(file: document_url(d)) do
+      %i.fa.fa-eye
+  %td
+    =check_box_tag "#{d.id}", false
+
+
+

@@ -4,7 +4,6 @@
     .col-xs-12.col-sm-9.pull-right
       %h4 DOCUMENTS
       = link_to 'New document', new_document_path
-      = link_to 'New folder', new_folder_path
       -if @documents.exists?
         .container
           .row

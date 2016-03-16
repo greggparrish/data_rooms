@@ -4,13 +4,13 @@ html {
     background-color: $desert_storm;
     height: 100%;
     font-size: 90%;
-  }
-}
-
-#wrapper {
-  margin-top: 52px;
-  @media(min-width:768px) {
-    position: inherit;
+    #wrapper {
+      margin: 0 auto;
+      margin-top: 52px;
+      @media(min-width:768px) {
+        position: inherit;
+      }
+    }
   }
 }
 

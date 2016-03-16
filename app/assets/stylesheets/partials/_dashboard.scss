@@ -1,8 +1,6 @@
 .dashboard-container {
   background-color: $black-haze;
-  height: 90%;
-  padding: 15px;
-  overflow: auto;
+  height: 100%;
   .sidebar-left {
     display: none; 
     @include media-breakpoint-up(md) {
@@ -26,16 +24,17 @@
       }
     }
     ul.dashdocs {
-      padding: 10px;
+      padding-bottom: 10px;
+      margin-top: 10px;
       border-bottom: 1px solid $light-grey;
       > li.icon {
-        margin: 0 15px 0 -20px;
-        font-size: 3em;
+        margin: 10px 15px 0 -20px;
+        font-size: 2em;
         float: left;
         clear: both;
       }
       > li.date, > li.filename {
-        color: $text-muted;
+        color: $medium_grey;
         font-size: .8em;
       }
     }

@@ -1,42 +1,38 @@
 .dashboard-container
-  .col-sm-12.col-md-2
-    .sidebar-left
-      .user
-        %ul.list-unstyled
-          %li= link_to image_tag(current_user.avatar, class: 'img-circle'), current_user
-          %li.username
-            =link_to current_user.username, current_user
-          %li= current_user.email
-          %li= current_user.title
-          %li= current_user.company
-      .notifications
-        %h6
-          NOTIFICATIONS
-  .col-xxs.12.col-md-7.documents
-    %h6
-      =link_to 'DOCUMENTS', documents_path
-    -if @documents.exists?
-      %ul.list-inline.doc-toolbar
-        %li
-          ADD
-        %li
-          SORT BY:
-        %li
-          OWNED
-        %li
-          TREE
-        %li
-          ALL
-
-      - @documents.each do |permission|
-        = render partial: 'documents/document_list', locals: {p: permission}
-    -else
-      ADD DOC or INTROBOX
-  .col-xxs.12.col-md-3.projects
-    %h6
-      =link_to 'PROJECTS', projects_path
-      -if @projects.exists?
-        - @projects.each do |project|
-          = render partial: 'projects/project_list', locals: {p: project}
+  .row.row-eq-height
+    .col-sm-12.col-md-2
+      .sidebar-left
+        .user
+          %ul.list-unstyled
+            %li= link_to image_tag(current_user.avatar, class: 'img-circle'), current_user
+            %li.username
+              =link_to current_user.username, current_user
+            %li= current_user.email
+            %li= current_user.title
+            %li= current_user.company
+        .notifications
+          %h6
+            NOTIFICATIONS
+    .col-xxs.12.col-md-7.documents
+      %h6
+        =link_to 'RECENT DOCUMENTS', documents_path
+      -if @documents.exists?
+        %ul.list-inline.doc-toolbar
+          %li
+            YOUR VIEWS
+          %li
+            UPLOADED
+          %li
+            ANNOTATED
+        - @documents.each do |permission|
+          = render partial: 'documents/document_list', locals: {p: permission}
       -else
-        =link_to('ADD A PROJECT', new_project_path)
+        ADD DOC or INTROBOX
+    .col-xxs.12.col-md-3.projects
+      %h6
+        =link_to 'PROJECTS', projects_path
+        -if @projects.exists?
+          - @projects.each do |project|
+            = render partial: 'projects/project_list', locals: {p: project}
+        -else
+          =link_to('ADD A PROJECT', new_project_path)

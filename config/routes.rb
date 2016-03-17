@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :doc_permissions
+
+  resources :team_permissions
+
+  resources :project_permissions
+
+  resources :folder_permissions
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, :controllers => { registrations: 'registrations' }, path: "accounts", path_names: { 
     sign_in: 'login', 

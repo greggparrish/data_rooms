@@ -1,0 +1,27 @@
+%h1 Listing project_permissions
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Project
+      %th Abilities
+      %th Expiration
+      %th
+      %th
+      %th
+
+  %tbody
+    - @project_permissions.each do |project_permission|
+      %tr
+        %td= project_permission.user_id
+        %td= project_permission.project_id
+        %td= project_permission.abilities
+        %td= project_permission.expiration
+        %td= link_to 'Show', project_permission
+        %td= link_to 'Edit', edit_project_permission_path(project_permission)
+        %td= link_to 'Destroy', project_permission, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Project permission', new_project_permission_path

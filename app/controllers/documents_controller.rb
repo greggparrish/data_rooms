@@ -41,7 +41,7 @@ class DocumentsController < ApplicationController
       if @document.save
         @permissions.document_id = @document.id
         @permissions.save
-        f.html { redirect_to @document, notice: 'Document added.' }
+        f.html { redirect_to params[:document][:pid] != 'false' ? project_path(params[:document][:pid]) : @document, notice: 'Document added.' }
         f.json { render action: 'show', status: :created, location: @document }
       else
         f.html { render action: 'new' }
@@ -82,7 +82,7 @@ class DocumentsController < ApplicationController
   end
 
   def set_ownership
-    @permissions = Permission.new user_id: @user.id, abilities: 0, expires: Time.zone.parse('2099-01-01 21:00')
+    @permissions = DocPermission.new user_id: @user.id, abilities: 0, expires: Time.zone.parse('2099-01-01 21:00')
   end
 
   def document_params

@@ -26,12 +26,14 @@
 
 class User < ActiveRecord::Base
   before_create :randomize_id
-  has_many :memberships
   has_many :teams, through: :memberships
-  has_many :permissions
-  has_many :documents, through: :permissions
-  has_many :stakeholders
+  has_many :memberships, dependent: :delete_all
   has_many :projects, through: :stakeholders
+  has_many :stakeholders, dependent: :delete_all
+  has_many :assets, dependent: :delete_all
+  has_many :documents, through: :assets
+  has_many :doc_permissions, dependent: :delete_all
+  has_many :documents, through: :doc_permissions
 
   validates :username, presence: true, length: { minimum: 4, maximum: 16 } 
   validates_uniqueness_of :username

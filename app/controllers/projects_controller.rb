@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
     @document = @user.documents.new
     @folders = @project.folders
     @folder = Folder.new
-    @projects = @user.projects.group(:folder)
+    @projects = @user.projects
   end
 
   def new

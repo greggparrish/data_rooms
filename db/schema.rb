@@ -11,17 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316191034) do
+ActiveRecord::Schema.define(version: 20160317191959) do
 
   create_table "assets", force: :cascade do |t|
     t.integer  "document_id", limit: 4
     t.integer  "project_id",  limit: 4
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.integer  "abilities",   limit: 4
+    t.datetime "expiration"
   end
 
   add_index "assets", ["document_id"], name: "index_assets_on_document_id", using: :btree
   add_index "assets", ["project_id"], name: "index_assets_on_project_id", using: :btree
+
+  create_table "doc_permissions", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "document_id", limit: 4
+    t.datetime "expires"
+    t.integer  "abilities",   limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "doc_permissions", ["document_id"], name: "index_doc_permissions_on_document_id", using: :btree
+  add_index "doc_permissions", ["user_id"], name: "index_doc_permissions_on_user_id", using: :btree
 
   create_table "doctrees", force: :cascade do |t|
     t.integer  "document_id", limit: 4
@@ -74,19 +88,8 @@ ActiveRecord::Schema.define(version: 20160316191034) do
     t.integer  "team_id",    limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "abilities",  limit: 4
   end
-
-  create_table "permissions", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "document_id", limit: 4
-    t.datetime "expires"
-    t.integer  "abilities",   limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "permissions", ["document_id"], name: "index_permissions_on_document_id", using: :btree
-  add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -104,6 +107,8 @@ ActiveRecord::Schema.define(version: 20160316191034) do
     t.integer  "project_id", limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "abilities",  limit: 4
+    t.datetime "expiration"
   end
 
   add_index "stakeholders", ["project_id"], name: "index_stakeholders_on_project_id", using: :btree

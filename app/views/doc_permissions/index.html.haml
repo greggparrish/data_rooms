@@ -1,0 +1,19 @@
+%h1 Listing doc_permissions
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @doc_permissions.each do |doc_permission|
+      %tr
+        %td= link_to 'Show', doc_permission
+        %td= link_to 'Edit', edit_doc_permission_path(doc_permission)
+        %td= link_to 'Destroy', doc_permission, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Doc permission', new_doc_permission_path

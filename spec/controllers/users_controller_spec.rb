@@ -19,8 +19,6 @@
 #  title                  :string(255)
 #  company                :string(255)
 #  avatar                 :string(255)
-#  avatar_content_type    :string(255)
-#  avatar_file_size       :integer
 #  avatar_updated_at      :datetime
 #  name                   :string(255)
 #  slug                   :string(255)

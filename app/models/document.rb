@@ -17,12 +17,12 @@
 
 class Document < ActiveRecord::Base
   before_create :randomize_id
-  has_many :permissions, dependent: :delete_all
-  has_many :users, through: :permissions
-  has_many :assets, dependent: :delete_all
+  has_many :users, through: :doc_permissions
+  has_many :doc_permissions, dependent: :delete_all
   has_many :projects, through: :assets
-  has_many :doctrees, dependent: :delete_all
+  has_many :assets, dependent: :delete_all
   has_many :folders, through: :doctrees
+  has_many :doctrees, dependent: :delete_all
   belongs_to :user
 
   validates :doc_file, :title, presence: true

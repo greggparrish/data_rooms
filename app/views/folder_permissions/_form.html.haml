@@ -1,0 +1,11 @@
+= simple_form_for(@folder_permission) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :user_id
+    = f.input :folder_id
+    = f.input :abilities
+    = f.input :expiration
+
+  .form-actions
+    = f.button :submit

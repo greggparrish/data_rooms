@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @team_permission.user_id
+%p
+  %b Team:
+  = @team_permission.team_id
+%p
+  %b Abilities:
+  = @team_permission.abilities
+%p
+  %b Expiration:
+  = @team_permission.expiration
+
+= link_to 'Edit', edit_team_permission_path(@team_permission)
+\|
+= link_to 'Back', team_permissions_path

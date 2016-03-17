@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @folder_permission.user_id
+%p
+  %b Folder:
+  = @folder_permission.folder_id
+%p
+  %b Abilities:
+  = @folder_permission.abilities
+%p
+  %b Expiration:
+  = @folder_permission.expiration
+
+= link_to 'Edit', edit_folder_permission_path(@folder_permission)
+\|
+= link_to 'Back', folder_permissions_path

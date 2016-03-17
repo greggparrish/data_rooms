@@ -1,0 +1,27 @@
+%h1 Listing team_permissions
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Team
+      %th Abilities
+      %th Expiration
+      %th
+      %th
+      %th
+
+  %tbody
+    - @team_permissions.each do |team_permission|
+      %tr
+        %td= team_permission.user_id
+        %td= team_permission.team_id
+        %td= team_permission.abilities
+        %td= team_permission.expiration
+        %td= link_to 'Show', team_permission
+        %td= link_to 'Edit', edit_team_permission_path(team_permission)
+        %td= link_to 'Destroy', team_permission, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Team permission', new_team_permission_path

@@ -17,26 +17,26 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = current_user.projects
-    @proj_list = current_user.projects.order(:title)
+    @projects = @user.projects
+    @proj_list = @user.projects.order(:title)
   end
 
   def show
-    @documents = @project.documents
     @document = @user.documents.new
-    @folders = @project.folders
+    @documents = @project.documents
     @folder = Folder.new
+    @folders = @project.folders
     @projects = @user.projects
   end
 
   def new
-    @project = current_user.projects.new
+    @project = @user.projects.new
   end
 
   def create
-    @project = current_user.projects.build(project_params)
+    @project = @user.projects.create(project_params)
     if @project.save
-      @project.users << current_user
+      @project.stakeholders.create(user_id: @user.id, abilities: 0, expiration: Time.zone.parse('2099-01-01 21:00'))
       flash[:success] = "Project added."
       redirect_to projects_path
     else
@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
 
   private
   def set_user
-    @user = current_user
+    @user = @user
   end
 
   def set_project
@@ -71,6 +71,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:avatar, :title, :description, :thumbnail)
+    params.require(:project).permit(:avatar, :title, :description, :thumbnail, :project_id, :user_id, :abilities, :expiration)
   end
 end

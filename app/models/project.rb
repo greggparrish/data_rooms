@@ -18,6 +18,7 @@ class Project < ActiveRecord::Base
   has_many :assets, dependent: :delete_all
   has_many :documents, through: :assets
   has_many :folders
+
   validate :legit_filetype
   validates :title, :presence => true
 

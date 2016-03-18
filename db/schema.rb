@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317191959) do
+ActiveRecord::Schema.define(version: 20160318173051) do
 
   create_table "assets", force: :cascade do |t|
     t.integer  "document_id", limit: 4
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160317191959) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "abilities",  limit: 4
+    t.datetime "expiration"
   end
 
   create_table "projects", force: :cascade do |t|

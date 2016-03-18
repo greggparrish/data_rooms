@@ -39,6 +39,7 @@ class DocumentsController < ApplicationController
     @document.user_id = @user.id
     respond_to do |f|
       if @document.save
+        @document.assets.update_all(abilities: 0, expiration: Time.zone.parse('2099-01-01 21:00'))
         @permissions.document_id = @document.id
         @permissions.save
         f.html { redirect_to params[:document][:pid] != 'false' ? project_path(params[:document][:pid]) : @document, notice: 'Document added.' }
@@ -86,6 +87,6 @@ class DocumentsController < ApplicationController
   end
 
   def document_params
-    params.require(:document).permit(:doc_file, :title, :description, :user_id, :document_id, project_ids: [])
+    params.require(:document).permit(:doc_file, :title, :description, :user_id, :document_id, :abilities, :expiration, project_ids: [])
   end
 end

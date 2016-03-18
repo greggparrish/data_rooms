@@ -24,9 +24,9 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = @user.teams.build(team_params)
+    @team = @user.teams.new(team_params)
     if @team.save
-      @team.users << @user
+      @team.memberships.create(user_id: @user.id, abilities: 0, expiration: Time.zone.parse('2099-01-01 21:00'))
       flash[:success] = "Team added."
       redirect_to teams_path
     else
@@ -64,7 +64,7 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:title, :description, :thumbnail, user_ids: [])
+    params.require(:team).permit(:title, :description, :thumbnail, :abilities, :expiration, user_ids: [])
   end
 
 end

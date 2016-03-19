@@ -57,9 +57,9 @@ class User < ActiveRecord::Base
   end
 
   private
-  # Check if filetype is acceptable (jpg, png, gif) and not funny business
+  # Use file to check if filetype is acceptable (jpg,png,gif) and is what it claims to be
   def legit_filetype
-    errors.add(:avatar, 'Invalid content type') unless Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: self.avatar.path).chomp.in?(['image/jpeg', 'image/png', 'image/gif'])
+    errors.add(:avatar, 'Invalid content type') unless Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: "#{self.avatar.path}").chomp.in?(['image/jpeg', 'image/png', 'image/gif'])
   end
 
   def randomize_id

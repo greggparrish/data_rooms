@@ -34,16 +34,15 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = @user.projects.create(project_params)
+    @project = @user.projects.build(project_params)
     if @project.save
-      @project.stakeholders.create(user_id: @user.id, abilities: 0, expiration: Time.zone.parse('2099-01-01 21:00'))
       flash[:success] = "Project added."
       redirect_to projects_path
     else
       flash[:alert] = "Project couldn't be added. Check form for errors."
       render :new
     end
-  end 
+  end
 
   def edit
   end
@@ -71,6 +70,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:avatar, :title, :description, :thumbnail, :project_id, :user_id, :abilities, :expiration)
+    params.require(:project).permit(:avatar, :title, :description, :thumbnail, :project_id, :user_id)
   end
 end

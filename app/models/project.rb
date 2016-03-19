@@ -44,8 +44,8 @@ class Project < ActiveRecord::Base
     end while User.where(id: self.id).exists?
   end
 
-  # Check if filetype is acceptable (jpg, png, gif) and not funny business
+  # Use file to check if filetype is acceptable (jpg,png,gif) and is what it claims to be
   def legit_filetype
-    errors.add(:thumbnail, 'Invalid content type') unless Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: self.thumbnail.path).chomp.in?(['image/jpeg', 'image/png', 'image/gif'])
+    errors.add(:thumbnail, 'Invalid content type') unless Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: "#{self.thumbnail.path}").chomp.in?(['image/jpeg', 'image/png', 'image/gif'])
   end
 end

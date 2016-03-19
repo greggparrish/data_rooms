@@ -31,9 +31,9 @@ class Document < ActiveRecord::Base
   before_save :save_doc_metadata
 
   private
-  # Check if filetype is acceptable (pdf,doc) and not funny business
+  # Use file to check if filetype is acceptable (pdf,doc) and is what it claims to be
   def legit_filetype
-    Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: self.doc_file).chomp.in?(['application/pdf', 'application/doc']) ? self.file_content_type = doc_file.file.content_type : errors.add(:document, 'Invalid content type')
+    Cocaine::CommandLine.new('file', '-b --mime-type :file').run(file: "#{self.doc_file}").chomp.in?(['application/pdf', 'application/doc']) ? self.file_content_type = doc_file.file.content_type : errors.add(:document, 'Invalid content type')
   end
 
   def save_doc_metadata

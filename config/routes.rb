@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :doc_permissions
-
-  resources :team_permissions
-
-  resources :project_permissions
-
-  resources :folder_permissions
+  resources :doctrees
+  resources :documents
+  resources :folders
+  resources :permissions
+  resources :projects
+  resources :teams
+  resources :users
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, :controllers => { registrations: 'registrations' }, path: "accounts", path_names: { 
@@ -26,14 +26,6 @@ Rails.application.routes.draw do
 
   #PDF Viewer
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
-
-  resources :doctrees
-  resources :documents
-  resources :folders
-  resources :permissions
-  resources :projects
-  resources :teams
-  resources :users
 
   #carrierwave file view
   get '/storage/document/doc_file/:id/:basename.:extension' => 'documents#download'

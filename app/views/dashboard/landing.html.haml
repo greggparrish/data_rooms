@@ -31,8 +31,8 @@
     .col-xxs.12.col-md-3.projects
       %h6
         =link_to 'PROJECTS', projects_path
-        -if @projects.exists?
-          - @projects.each do |project|
-            = render partial: 'projects/project_list', locals: {p: project}
-        -else
-          =link_to('ADD A PROJECT', new_project_path)
+      -if @projects.exists?
+        - @projects.each do |project|
+          = render partial: 'projects/project_list', locals: {p: project}
+      -else
+        =link_to('ADD A PROJECT', new_project_path)

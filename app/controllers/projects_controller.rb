@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
   def create
     @project = @user.projects.build(project_params)
     if @project.save
+      @project.stakeholders.create(user_id: @user.id, abilities: 0, expiration: Time.zone.parse('2099-01-01 21:00'))
       flash[:success] = "Project added."
       redirect_to projects_path
     else
@@ -62,7 +63,7 @@ class ProjectsController < ApplicationController
 
   private
   def set_user
-    @user = @user
+    @user = current_user
   end
 
   def set_project

@@ -33,6 +33,7 @@ class Project < ActiveRecord::Base
       [:id, :title]
     ]
   end
+
   private
   def should_generate_new_friendly_id?
       title_changed?

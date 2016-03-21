@@ -19,10 +19,9 @@ class DocumentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_document, only: [:show, :edit, :update, :destroy]
   before_action :set_user
-  before_action :set_ownership, only: [:create]
 
   def index
-    @documents = current_user.documents
+    @documents = @user.documents
   end
 
   def show
@@ -39,9 +38,7 @@ class DocumentsController < ApplicationController
     @document.user_id = @user.id
     respond_to do |f|
       if @document.save
-        @document.assets.update_all(abilities: 0, expiration: Time.zone.parse('2099-01-01 21:00'))
-        @permissions.document_id = @document.id
-        @permissions.save
+        @document.doc_permissions.create(user_id: @user.id, abilities: 0, expires: Time.zone.parse('2099-01-01 21:00'))
         f.html { redirect_to params[:document][:pid] != 'false' ? project_path(params[:document][:pid]) : @document, notice: 'Document added.' }
         f.json { render action: 'show', status: :created, location: @document }
       else
@@ -80,10 +77,6 @@ class DocumentsController < ApplicationController
 
   def set_document
     @document = Document.find(params[:id])
-  end
-
-  def set_ownership
-    @permissions = DocPermission.new user_id: @user.id, abilities: 0, expires: Time.zone.parse('2099-01-01 21:00')
   end
 
   def document_params

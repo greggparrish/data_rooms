@@ -12,10 +12,25 @@
 #
 
 class DocPermissionsController < InheritedResources::Base
+  before_action :authenticate_user!
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :permissions]
+  before_action :set_user
+
+  def show
+    @document = Document.find(params[:id])
+  end
 
   private
-    def doc_permission_params
-      params.require(:doc_permission).permit()
-    end
+  def set_user
+    @user = current_user
+  end
+
+  def set_document
+    @document = Document.find(params[:id])
+  end
+
+  def doc_permission_params
+    params.require(:document).permit(:doc_file, :title, :description, :user_id, :document_id, :abilities, :expiration, project_ids: [])
+  end
 end
 

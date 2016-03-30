@@ -1,3 +1,4 @@
+- provide(:title, @project.title)
 -breadcrumb :project, @project
 .container-fluid.project_page
   .row
@@ -19,7 +20,7 @@
       .modal.fade.new-project-modal{"aria-hidden" => "true", "aria-labelledby" => "newProjectModal", :role => "dialog", :tabindex => "-1"}
         .modal-dialog.modal-lg
           .modal-content
-            =render "folders/form", project_id: @project.id
+            =render "folders/form", project_id: @project.id, project: @project
       %table.table.table-striped
         - @folders.each do |f|
           %tr

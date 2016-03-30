@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :doctrees
   resources :documents
   resources :folders
-  resources :permissions
+  resources :doc_permissions
   resources :projects
   resources :teams
   resources :users

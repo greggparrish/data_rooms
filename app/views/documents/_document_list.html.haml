@@ -3,7 +3,7 @@
     =link_to document_path(p.document.id) do
       -filetype_icon(p.document.file_content_type)
   %li.listtitle
-    =link_to(p.document.title.upcase, document_path(p.document.id), class: 'listtitle')
+    =doc_title(p.document)
   -if p.document.projects.any?
     %li.date
       %strong

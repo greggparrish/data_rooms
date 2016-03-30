@@ -2,8 +2,11 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require autocomplete-rails
 //= require_tree .
+//= require cocoon
 // jQuery for page scrolling feature - requires jQuery Easing plugin
+
 $(function() {
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);

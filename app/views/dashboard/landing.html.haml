@@ -1,18 +1,17 @@
 .dashboard-container
   .row.row-eq-height
-    .col-sm-12.col-md-2
-      .sidebar-left
-        .user
-          %ul.list-unstyled
-            %li= link_to image_tag(current_user.avatar, class: 'img-circle'), current_user
-            %li.username
-              =link_to current_user.username, current_user
-            %li= current_user.email
-            %li= current_user.title
-            %li= current_user.company
-        .notifications
-          %h6
-            NOTIFICATIONS
+    .col-sm-12.col-md-2.sidebar-left
+      .user
+        %ul.list-inline
+          %li= link_to image_tag(current_user.avatar, class: 'img-circle'), current_user
+          %li.username
+            =link_to current_user.username, current_user
+          %li= current_user.email
+          %li= current_user.title
+          %li= current_user.company
+      .notifications
+        %h6
+          NOTIFICATIONS
     .col-xxs.12.col-md-7.documents
       %h6
         =link_to 'RECENT DOCUMENTS', documents_path

@@ -25,7 +25,7 @@ class Document < ActiveRecord::Base
   has_many :doctrees, dependent: :delete_all
   belongs_to :user
 
-  validates :doc_file, :title, presence: true
+  validates :doc_file, presence: true
   validate :legit_filetype
   mount_uploader :doc_file, DocumentUploader
   before_save :save_doc_metadata

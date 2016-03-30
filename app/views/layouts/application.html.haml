@@ -8,8 +8,9 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
     %meta{:content => "", :name => "description"}/
     %meta{:content => "", :name => "author"}/
-    %title Data Rooms
-    / Custom Fonts
+    %title 
+      = full_title(yield(:title)).html_safe
+    / Custom Fonts00101
     = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Lato:400,900'
     = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Roboto:400,100,300,700'
     = stylesheet_link_tag :application, media: "all"
@@ -27,6 +28,7 @@
           %p.alert.alert-success= notice
         - if alert
           %p.alert.alert-danger= alert
+        - page_title(yield(:title))
         = breadcrumbs separator: " > "
         = yield
     = render 'layouts/footer'

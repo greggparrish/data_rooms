@@ -2,9 +2,9 @@
   .container-fluid
     .navbar-header.page-scroll
       - if current_user  
-        =link_to 'DATAROOMS', dashboard_path, class: 'navbar-brand page-scroll'
+        =link_to 'AMPHORAE', dashboard_path, class: 'navbar-brand page-scroll'
       - else
-        =link_to 'DATAROOMS', root_url, class: 'navbar-brand page-scroll'
+        =link_to 'AMPHORAE', root_url, class: 'navbar-brand page-scroll'
       %ul
         - if current_user  
           %li

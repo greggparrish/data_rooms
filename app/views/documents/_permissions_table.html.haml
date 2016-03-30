@@ -1,0 +1,10 @@
+%tr
+  %td
+    = image_tag(p.user.avatar, class: 'img-circle')
+  %td
+    = p.user.username
+    (#{p.user.email})
+  %td= p.user.email
+  %td= p.user.id
+  %td= p.abilities
+

@@ -9,6 +9,7 @@ html {
     #wrapper {
       margin: 0 auto;
       margin-top: 52px;
+      max-width: 1400px;
       @media(min-width:768px) {
         position: inherit;
       }
@@ -32,6 +33,10 @@ img {
   padding: 10px;
 }
 
+ul.list-inline > li {
+  display: inline-block;
+}
+
 @media (max-width: 480px) { 
    .col-xxs {
      display:block;
@@ -43,4 +48,8 @@ img {
 // Modals
 .modal-content {
   padding: 40px 20px;
+}
+
+.breadcrumbs {
+  font-size: .7em;
 }

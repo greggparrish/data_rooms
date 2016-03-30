@@ -1,5 +1,5 @@
 nav.navbar {
-  background: $dark_grey;
+  background: $black;
   font-family: $font_4; 
   height: 45px;
   overflow: hidden;
@@ -17,11 +17,9 @@ nav.navbar {
     }
   }
   .navbar-brand {
-    background-color: $dr_purple;
     font-family: $font_0;
     font-weight:900;
     padding: 10px;
-    border-right: 1px solid $light-grey;
   }
   ul { 
     float: right;

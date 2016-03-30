@@ -1,25 +1,44 @@
--breadcrumb :document, @document
-#wrapper
-  .container
-    .row
-      .col-lg-12
-        %tr
-          %td= @document.title
-          %td= @document.description
-          %td= number_to_human_size(@document.file_size)
-          %td= @document.original_filename
-          %td.center
-            -filetype_icon(@document.file_content_type)
-          %td.center
+- provide(:title, "DOCUMENT: "+@document.title)
+- breadcrumb :document, @document
+.container
+.document-container
+  .row.row-eq-height
+    .col-sm-12.col-md-2.sidebar-left
+      %button.btn.btn-primary{"data-target" => ".new-document-modal", "data-toggle" => "modal"} ADD USER
+      %button.btn.btn-primary{"data-target" => ".new-document-modal", "data-toggle" => "modal"} ADD TO TEAM
+      %button.btn.btn-primary{"data-target" => ".new-document-modal", "data-toggle" => "modal"} ADD TO PROJECT
+      %ul.list-unstyled
+        %li
+          -filetype_icon(@document.file_content_type)
+        %li= @document.title
+        %li= @document.original_filename
+        %li= @document.description
+        %li (#{number_to_human_size(@document.file_size)})
+        %li 
+          =doc_meta(@document)
+        %ul.list-inline
+          %li.center
             = link_to document_path(@document), :method => :delete, :data => { :confirm => 'Are you sure?' }, "data-original-title" => "Delete" do
               %i.fa.fa-trash
-          %td.center
+          %li.center
             =link_to document_url(@document) do
               %i.fa.fa-download
-          %td.center
+          %li.center
             =link_to pdfjs.full_path(file: document_url(@document)) do
               %i.fa.fa-eye
+      %h6
+        =link_to 'PROJECTS', projects_path
+    .col-xxs.12.col-md-10
+      %h6 USER PERMS
+      -if @perms != false 
+        %table.table.table-striped
+          %tr
+            %th why
+            %th
+            %th
+            %th
+            %th chk
+          - @perms.each do |p|
+            = render partial: 'documents/permissions_table', locals: {p: p}
 
-        = link_to 'Edit', edit_document_path(@document)
-        |
-        = link_to 'Back', documents_path
+

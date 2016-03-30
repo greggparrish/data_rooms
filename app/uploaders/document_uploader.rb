@@ -25,9 +25,7 @@ class DocumentUploader < CarrierWave::Uploader::Base
     model.original_filename = transliterate(model.original_filename).gsub(/[^\w\.\-]/, '_')
   end
 
-
   protected
-
   def secure_token(length=16)
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(22))

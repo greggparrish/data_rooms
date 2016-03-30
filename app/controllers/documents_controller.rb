@@ -17,8 +17,9 @@
 
 class DocumentsController < ApplicationController  
   before_action :authenticate_user!
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :permissions]
   before_action :set_user
+  before_action :set_perms, only: [:show]
 
   def index
     @documents = @user.documents
@@ -65,6 +66,10 @@ class DocumentsController < ApplicationController
     redirect_to :back
   end
 
+  def permissions
+
+  end
+
   def download
     @doc = Document.find(params[:id])
     send_file "#{@doc.doc_file.path}", disposition: 'attachment', x_sendfile: true
@@ -77,6 +82,10 @@ class DocumentsController < ApplicationController
 
   def set_document
     @document = Document.find(params[:id])
+  end
+
+  def set_perms
+    @document.user == @user ? @perms = @document.doc_permissions : @perms = false
   end
 
   def document_params

@@ -1,0 +1,40 @@
+.sidebar-left {
+  margin-top: -50px;
+  background-color: $light_grey;
+  padding: 5px;
+  line-height: 1em;
+  @include media-breakpoint-down(md) {
+    margin-top: 0;
+  }
+  .sidebar-box {
+    background-color: $black_haze;
+    margin-bottom: 5px;
+    &.user {
+      display: none; 
+      font-family: $font_3;
+      font-size: .85em;
+      text-align: center;
+      padding-bottom: 10px;
+      color: $muted_text_dark;
+      img {
+        margin: 0 auto;
+        display: block;
+        padding: 2% 2% 10px 2%;;
+        width: 98%;
+      }
+      @include media-breakpoint-up(md) {
+        display: block;
+      }
+      ul {
+        li.username {
+          font-size: 1.3em;
+          padding-bottom: 2px;
+        }
+        li.email {
+          padding-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+

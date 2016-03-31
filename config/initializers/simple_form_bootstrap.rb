@@ -3,6 +3,8 @@ SimpleForm.setup do |config|
   config.error_notification_class = 'alert alert-danger'
   config.button_class = 'btn btn-default'
   config.boolean_label_class = nil
+  SimpleForm::FormBuilder.map_type :image_preview, to: SimpleForm::Inputs::ImagePreviewInput
+  SimpleForm::FormBuilder.map_type :attachment_preview, to: SimpleForm::Inputs::AttachmentPreviewInput
 
   config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5

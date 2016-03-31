@@ -1,19 +1,36 @@
 //fonts
 $font_0: Lato;
-$font_1: Helvetica Neue;
-$font_2: Helvetica;
-$font_3: sans-serif;
-$font_4: Roboto;
+$font_1: Roboto;
+$font_2: Helvetica Neue;
+$font_3: Helvetica;
+$font_4: sans-serif;
 
 $text-shadow: 0 0 0.6em #000;
 
 h1,h2,h3,h4,h5,h6 {
-  text-transform: uppercase;
-  font-family: $font_0, $font_2, $font_3;
-  font-weight: 700;
+  font-family: $font_0, $font_1, $font_2, $font_3;
 }
+
+h1 {
+  font-size: 2em;  
+  font-weight: 700;
+  padding: 0;
+  margin: 12px;
+}
+
+h1.title {
+  color: $muted_text_light;
+}
+
+h2 {
+}
+
+h3 {
+
+}
+
 .text-muted {
-  color: $medium_grey;
+  color: $med_grey;
 }
 .text-primary {
   color: $light_purple;
@@ -28,7 +45,7 @@ p {
 }
 a {
   outline: 0;
-  color: $purple;
+  color: $orange;
   &:hover, &:focus, &:active,&.active {
     outline: 0;
     color: $red_dark;

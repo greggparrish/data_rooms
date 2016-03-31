@@ -1,37 +1,22 @@
-.dashboard-container
+.container
   .row.row-eq-height
-    .col-sm-12.col-md-2.sidebar-left
-      .user
-        %ul.list-inline
-          %li= link_to image_tag(current_user.avatar, class: 'img-circle'), current_user
-          %li.username
-            =link_to current_user.username, current_user
-          %li= current_user.email
-          %li= current_user.title
-          %li= current_user.company
-      .notifications
+    .col-sm.12.col-md-10.col-md-push-2.primary
+      .title
+        %h1
+          DASHBOARD
+      .content
         %h6
-          NOTIFICATIONS
-    .col-xxs.12.col-md-7.documents
-      %h6
-        =link_to 'RECENT DOCUMENTS', documents_path
-      -if @documents.exists?
-        %ul.list-inline.doc-toolbar
-          %li
-            YOUR VIEWS
-          %li
-            UPLOADED
-          %li
-            ANNOTATED
-        - @documents.each do |permission|
-          = render partial: 'documents/document_list', locals: {p: permission}
-      -else
-        ADD DOC or INTROBOX
-    .col-xxs.12.col-md-3.projects
-      %h6
-        =link_to 'PROJECTS', projects_path
-      -if @projects.exists?
-        - @projects.each do |project|
-          = render partial: 'projects/project_list', locals: {p: project}
-      -else
-        =link_to('ADD A PROJECT', new_project_path)
+          =link_to 'RECENT DOCUMENTS', documents_path
+        -if @documents.exists?
+          %ul.list-inline.doc-toolbar
+            %li
+              YOUR VIEWS
+            %li
+              UPLOADED
+            %li
+              ANNOTATED
+          - @documents.each do |permission|
+            = render partial: 'documents/document_list', locals: {p: permission}
+        -else
+          ADD DOC or INTROBOX
+    =render 'layouts/left_sidebar'

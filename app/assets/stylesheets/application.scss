@@ -1,11 +1,13 @@
-@import "modules/colors";
 @import "modules/variables";
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+@import "modules/colors";
 @import "modules/typography";
+
 @import "modules/buttons";
+@import "modules/dropdowns";
 
 @import "partials/buttons";
 @import "partials/common";
@@ -13,6 +15,7 @@
 @import "partials/documents";
 @import "partials/footer";
 @import "partials/header";
+@import "partials/left_sidebar";
 @import "partials/nav";
 @import "partials/projects";
 @import "partials/sidebar";

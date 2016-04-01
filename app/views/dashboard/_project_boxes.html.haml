@@ -1,0 +1,26 @@
+.col-xs-12.project-box
+  .col-xs-12.col-sm-2
+    =link_to project_path(p.project) do
+      %i.floaticon.fa.fa-sitemap
+      =image_tag(p.project.thumbnail) 
+  .col-xs-12.col-sm-10
+    .col-xs-12.project-box-header
+      %h2
+        %span.pretitle
+          PROJECT:
+        =link_to p.project.title, project_path(p)
+    .col-xs-12
+    %ul.list-unstyled.project-box-list
+      %li PROJECT MANAGERS:
+      %li TOTAL DOCUMENTS: #{p.project.documents.length}
+      %li TOTAL MEMBERS: #{p.project.stakeholders.length}
+      %li LAST ACTIVITY:
+      %li NEXT ACTION DATE:
+  .col-xs-12
+    %table.table.table-striped
+      -p.project.documents.each do |d|
+        %tr
+          %td
+            = link_to d.title, document_path(d)
+          %td= d.title
+          %td= d.title

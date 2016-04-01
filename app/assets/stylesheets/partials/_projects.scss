@@ -9,6 +9,29 @@
   }
 }
 
+.project-box {
+  border: 1px solid $tapa;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 2px $light_grey;
+  i.floaticon {
+    position: absolute;
+    color: $orange;
+    font-size: 2em;
+    padding: 5px;
+    text-shadow: 2px 2px $med_grey;
+  }
+  .project-box-header {
+    background-color: $light_grey;
+  }
+  ul.project-box-list {
+    padding-left: 12px;
+    li {
+      line-height: 1.3em;
+      font-size: .9em;
+    }
+  }
+}
+
 body.modal-open {
   overflow: auto;
 }

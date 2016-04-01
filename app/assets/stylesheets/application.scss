@@ -1,5 +1,6 @@
 @import "modules/variables";
 @import "bootstrap";
+@import "animate";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -8,6 +9,7 @@
 
 @import "modules/buttons";
 @import "modules/dropdowns";
+@import "modules/tables";
 
 @import "partials/buttons";
 @import "partials/common";
@@ -19,5 +21,4 @@
 @import "partials/nav";
 @import "partials/projects";
 @import "partials/sidebar";
-@import "partials/tables";
 @import "partials/widgets";

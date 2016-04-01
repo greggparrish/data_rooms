@@ -8,7 +8,7 @@ $jq-dropdown-border-radius: 4px;
 
 .jq-dropdown {
   position: absolute;
-  z-index: 1039;
+  z-index: 9999;
   display: none;
   .jq-dropdown-menu,
   .jq-dropdown-panel {

@@ -3,6 +3,7 @@
 //= require jquery_ujs
 //= require tether
 //= require bootstrap-sprockets
+//= require bootstrap-notify
 //= require autocomplete-rails
 //= require_tree .
 //= require cocoon

@@ -1,4 +1,3 @@
-- provide(:title, @project.title)
 -breadcrumb :project, @project
 .container-fluid.project_page
   .row
@@ -9,6 +8,9 @@
     .col-sm-12.col-md-10
       .col-sm-12.project-header
         %h6= @project.title
+      .breadcrumbs
+        %span
+          = breadcrumbs separator: " > "
       // New folder modal
       %button.btn.btn-primary{"data-target" => ".new-document-modal", "data-toggle" => "modal"} NEW DOCUMENT
       .modal.fade.new-document-modal{"aria-hidden" => "true", "aria-labelledby" => "newDocumentModal", :role => "dialog", :tabindex => "-1"}

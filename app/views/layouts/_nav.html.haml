@@ -1,7 +1,7 @@
 %nav.navbar-default.navbar-fixed-top{:role => "navigation"}
   .container
     .row
-      .col-sm-2.navbar-brand
+      .col-sm-1.col-md-2.navbar-brand
         - if current_user  
           =link_to 'DATAROOMS', dashboard_path, class: 'page-scroll'
         - else
@@ -9,18 +9,9 @@
       .col-sm.10.navbar-menu
         %ul.list-inline
           - if current_user  
-            %li
-              =link_to teams_path do
-                %i.fa.fa-group
-                %span.navtext TEAMS
-            %li 
-              =link_to documents_path do
-                %i.fa.fa-file-text
-                %span.navtext DOCUMENTS
-            %li
-              =link_to projects_path do
-                %i.fa.fa-sitemap
-                %span.navtext PROJECTS
+            =nav_link('TEAMS', 'group', teams_path)
+            =nav_link('DOCUMENTS', 'file-text', documents_path)
+            =nav_link('PROJECTS', 'sitemap', projects_path)
             %li
               %i.fa.fa-bell
             %li

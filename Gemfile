@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap'
+gem 'bootstrap-growl-rails'
 gem 'cancancan', '~> 1.10'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'cocaine'

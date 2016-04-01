@@ -1,0 +1,14 @@
+.col-xs-12.project-box
+  .col-xs-12.project-box-header
+    %h2
+      %i.fa.fa-file-text
+      =link_to 'DOCUMENTS', documents_path
+  .col-xs-12
+    %table.table.table-striped
+      - @documents.each do |d|
+        %tr
+          %td
+            = link_to d.document.title, documents_path(d)
+          %td= d.document.title
+          %td= d.document.title
+

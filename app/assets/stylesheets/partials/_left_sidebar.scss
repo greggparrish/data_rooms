@@ -26,9 +26,15 @@
         display: block;
       }
       ul {
+        h2 {
+          margin: 0;
+        }
         li.username {
           font-size: 1.3em;
           padding-bottom: 2px;
+          a {
+            color: $med_grey;
+          }
         }
         li.email {
           padding-bottom: 5px;

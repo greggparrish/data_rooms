@@ -4,17 +4,18 @@ nav.navbar-default {
   margin: 0 auto;
   overflow: hidden;
   font-family: $font_0, $font_1, $font_3;
+  font-weight: 700;
   .navbar-brand {
     float: left;
     padding: 0;
-    padding-top: 7px;
+    padding-top: 10px;
     margin-right: 0;
-    font-size: 1.25rem;
+    font-size: 1.1em;
     background-color: $orange;
     height: 45px;
     text-align: center;
     a {
-      color: $black;
+      color: $light_grey;
     }
   }
   .navbar-menu {
@@ -24,15 +25,23 @@ nav.navbar-default {
     img {
       max-height: 40px;
     }
+    a {
+      color: $orange;
+    }
     ul {
       float: right;
+      height: 45px;
       li {
         padding: 0 10px;
+        height: 100%;
         .navtext {
           display: none;
           @include media-breakpoint-up(md) {
             display: inline-block;
           }
+        }
+        &.active {
+          background-color: $med_grey;
         }
       }
     }

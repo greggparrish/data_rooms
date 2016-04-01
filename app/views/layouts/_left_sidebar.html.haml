@@ -2,9 +2,9 @@
   .sidebar-box.user
     %ul.list-unstyled
       %li
-        %h2
-          = link_to image_tag(current_user.avatar, class: 'img-circle'), current_user
-      %li.username= link_to current_user.name.upcase, current_user
+        = link_to image_tag(current_user.avatar, class: 'img-circle'), current_user
+      %h2
+        %li.username= link_to current_user.name.upcase, current_user
       %li.email= current_user.email
       %li= current_user.title
       %li= current_user.company

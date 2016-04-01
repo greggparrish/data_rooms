@@ -23,20 +23,27 @@ html {
 .primary {
   padding: 0;
   margin: 0;
-  .title {
+  background-color: $lighter_grey;
+  .title, .breadcrumbs {
     border-bottom: 1px solid $light_grey;
+    overflow: auto;
+    color: $muted_text_light;
   }
-  .content {
+  .breadcrumbs span {
+    margin-left: 12px;
+    padding: 5px 0;
+    font-size: .85em;
+  }
+  .primary-content {
     padding: 12px; 
+    overflow: auto;
+    [class*='col-'] {
+      padding: 0;
+    }
   }
 }
 
 section {
-  padding: 30px 0;
-  &#about {
-    background: $purple;
-    color: $white;
-  }
 }
 
 img {
@@ -62,10 +69,6 @@ ul.list-inline > li {
 // Modals
 .modal-content {
   padding: 40px 20px;
-}
-
-.breadcrumbs {
-  font-size: .7em;
 }
 
 @include media-breakpoint-up(md) {

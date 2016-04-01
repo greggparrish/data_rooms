@@ -1,22 +1,14 @@
+- provide(:title, 'DASHBOARD')
 .container
   .row.row-eq-height
     .col-sm.12.col-md-10.col-md-push-2.primary
       .title
         %h1
           DASHBOARD
-      .content
-        %h6
-          =link_to 'RECENT DOCUMENTS', documents_path
+      .primary-content
+        -if @projects.exists?
+          - @projects.each do |p|
+            = render partial: 'project_boxes', locals: {p: p}
         -if @documents.exists?
-          %ul.list-inline.doc-toolbar
-            %li
-              YOUR VIEWS
-            %li
-              UPLOADED
-            %li
-              ANNOTATED
-          - @documents.each do |permission|
-            = render partial: 'documents/document_list', locals: {p: permission}
-        -else
-          ADD DOC or INTROBOX
+          = render partial: 'doc_boxes'
     =render 'layouts/left_sidebar'

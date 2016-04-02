@@ -1,14 +1,17 @@
--breadcrumb :projects
-.container-fluid
-  .row
-    .col-sm-12
-      %h4 PROJECTS
-      %p= link_to 'New project', new_project_path
-      -if @projects.exists?
-        %ul.list-unstyled
-          - @projects.each do |project|
-            = render partial: 'project_list_full', locals: {p: project}
-      -else 
-        %h3 NO PROJECTS
+- provide(:title, 'PROJECTS')
+.container
+  .row.row-eq-height
+    .col-sm.12.col-md-10.col-md-push-2.primary
+      .title
+        %h1
+          PROJECTS
+      .primary-content
+        .col-xs-12.col-md-9
+          -if @projects.exists?
+            .project-panel
+              %h4
+                %i.fa.fa-sitemap
+        .col-xs-12.col-md-3
+    =render 'layouts/left_sidebar'
 
 

@@ -6,9 +6,19 @@
         %h1
           DASHBOARD
       .primary-content
-        -if @projects.exists?
-          - @projects.each do |p|
-            = render partial: 'project_boxes', locals: {p: p}
-        -if @documents.exists?
-          = render partial: 'doc_boxes'
+        .col-xs-12.col-md-9
+          -if @projects.exists?
+            .project-panel
+              %h4
+                %i.fa.fa-sitemap
+                PROJECTS
+              - @projects.each do |p|
+                = render partial: 'project_boxes', locals: {p: p}
+        .col-xs-12.col-md-3
+          -if @documents.exists?
+            .doc-panel
+              %h4
+                %i.fa.fa-file-text
+                RECENT DOCUMENTS
+              = render partial: 'doc_boxes'
     =render 'layouts/left_sidebar'

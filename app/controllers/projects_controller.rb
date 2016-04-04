@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = @user.projects
-    @proj_list = @user.projects.order(:title)
+    @projects = @user.stakeholders.order('created_at desc').limit(2)
   end
 
   def show
@@ -31,6 +31,10 @@ class ProjectsController < ApplicationController
 
   def new
     @project = @user.projects.new
+  end
+
+  def document
+
   end
 
   def create

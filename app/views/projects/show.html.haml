@@ -1,37 +1,25 @@
--breadcrumb :project, @project
-.container-fluid.project_page
-  .row
-    .col-sm-12.col-md-2.pull-left.project-sidebar
-      = image_tag @project.thumbnail, class: 'img-circle'
-      %p= @project.description
-      %p= link_to("EDIT", edit_project_path(@project))
-    .col-sm-12.col-md-10
-      .col-sm-12.project-header
-        %h6= @project.title
-      .breadcrumbs
-        %span
-          = breadcrumbs separator: " > "
-      // New folder modal
-      %button.btn.btn-primary{"data-target" => ".new-document-modal", "data-toggle" => "modal"} NEW DOCUMENT
-      .modal.fade.new-document-modal{"aria-hidden" => "true", "aria-labelledby" => "newDocumentModal", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog.modal-lg
-          .modal-content
-            =render "documents/form", pid: @project.id
-      // New document modal
-      %button.btn.btn-primary{"data-target" => ".new-project-modal", "data-toggle" => "modal"} NEW FOLDER
-      .modal.fade.new-project-modal{"aria-hidden" => "true", "aria-labelledby" => "newProjectModal", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog.modal-lg
-          .modal-content
-            =render "folders/form", project_id: @project.id, project: @project
-      %table.table.table-striped
-        - @folders.each do |f|
-          %tr
-            %td
-              %i.fa.fa-folder
-            %td
-              =link_to(f.title.upcase, folder_path(f))
-            %td
+- provide(:title, 'PROJECTS: '+@project.title.upcase)
+.container
+  .row.row-eq-height
+    .col-sm.12.col-md-10.col-md-push-2.primary
+      .title
+        %h1
+          PROJECT:
+          =@project.title.upcase
+      .description
+        =@project.description
+      .primary-content
+        .col-xs-12.col-md-9
+          -if @projects.exists?
+            .project-panel
+              %h4
+                %i.fa.fa-sitemap
+                PROJECTS
+        .col-xs-12.col-md-3
+          -if @documents.exists?
+            .doc-panel
+              %h4
+                %i.fa.fa-file-text
+                RECENT DOCUMENTS
+    =render 'shared/left_sidebar'
 
-        %form
-          - @documents.each do |d|
-            = render partial: 'project_table', locals: {d: d}

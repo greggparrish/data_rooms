@@ -9,7 +9,7 @@
   .sidebar-box {
     background-color: $black_haze;
     margin-bottom: 5px;
-    &.user {
+    &.user, &.project {
       display: none; 
       font-family: $font_3;
       font-size: .85em;
@@ -39,6 +39,16 @@
         li.email {
           padding-bottom: 5px;
         }
+      }
+    }
+    &.project {
+      img {
+        padding: 5px 3px;
+      }
+    }
+    &.members {
+      img {
+        width: 30px;
       }
     }
   }

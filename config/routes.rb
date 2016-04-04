@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  resources :doctrees
-  resources :documents
-  resources :folders
-  resources :doc_permissions
-  resources :projects
-  resources :teams
-  resources :users
+  resources :doctrees, :folders, :doc_permissions, :projects, :teams, :documents, :users
+  resources :projects do
+    resources :documents, to: 'projects#document'
+  end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, :controllers => { registrations: 'registrations' }, path: "accounts", path_names: { 
@@ -22,7 +19,7 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   #Dashboard
-  get "dashboard" => "dashboard#landing" 
+  get "dashboard" => "dashboard#index" 
 
   #PDF Viewer
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'

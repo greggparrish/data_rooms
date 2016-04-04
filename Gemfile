@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activeadmin', github: 'activeadmin'
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'bootstrap-growl-rails'
 gem 'cancancan', '~> 1.10'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
@@ -17,7 +17,8 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'mysql2', '~> 0.3.18'
 gem 'pdfjs_viewer-rails'
-gem 'rails', '4.2.0'
+gem 'pundit'
+gem 'rails', '4.2.2'
 gem 'rails-assets-tether'
 gem 'rails4-autocomplete'
 gem 'rmagick'
@@ -42,6 +43,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'brakeman', require: false
   gem 'bundler-audit', require: false
   gem 'byebug'
   gem 'capybara'

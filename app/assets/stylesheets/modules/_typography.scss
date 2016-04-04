@@ -19,7 +19,7 @@ h1 {
 }
 
 span.pretitle {
-  color: $muted_text_light;
+  color: $muted_text_dark;
 }
 
 h2 {
@@ -32,11 +32,22 @@ h3 {
 
 }
 
+h4 {
+  font-size: 1.2em;
+  text-shadow: $text-shadow; 
+}
+
 .text-muted {
-  color: $med_grey;
+  color: $muted_text_light;
 }
 .text-primary {
-  color: $light_purple;
+  color: $med_grey;
+}
+.doc-meta {
+  color: $muted_text_dark;
+  font-size: .85em;
+  display: block;
+  margin-left: 5px;
 }
 
 p {

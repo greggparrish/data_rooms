@@ -18,4 +18,13 @@ attr_reader :user, :document
   def update?
     @document.doc_permissions.exists?(['user_id = ? AND abilities <= ?', @user, "1" ])
   end
+
+  def destroy?
+    @document.doc_permissions.exists?(['user_id = ? AND abilities = ?', @user, "0" ])
+  end
+
+  def download?
+    @document.doc_permissions.exists?(['user_id = ? AND abilities <= ?', @user, "2" ])
+  end
+
 end

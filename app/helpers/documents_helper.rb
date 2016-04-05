@@ -14,7 +14,5 @@ module DocumentsHelper
     "#{uploader}#{d.created_at.strftime("%b %d, %Y")}, (#{number_to_human_size(d.file_size)})"
   end
 
-
-
 end
 

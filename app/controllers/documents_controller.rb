@@ -17,25 +17,26 @@
 
 class DocumentsController < ApplicationController  
   before_action :authenticate_user!
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :permissions]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :permissions, :download]
   before_action :set_user
-  before_action :set_perms, only: [:show]
+  after_action :verify_authorized, except: [:index, :create]
+  after_filter :verify_policy_scoped, :only => :index
 
   def index
-    @documents = @user.documents
+    @documents = policy_scope(Document)
   end
 
   def show
+    authorize @document
   end
 
   def new
     @document = @user.documents.new
-    @projects = @user.projects
+    @projects = policy_scope(Project)
   end
 
   def create
     @document = @user.documents.build(document_params)
-    @projects = @user.projects
     @document.user_id = @user.id
     respond_to do |f|
       if @document.save
@@ -50,7 +51,7 @@ class DocumentsController < ApplicationController
   end
 
   def edit
-    @projects = current_user.projects
+    authorize @document, :update?
   end
 
   def update
@@ -62,17 +63,14 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
+    authorize @document
     @document.destroy
     redirect_to :back
   end
 
-  def permissions
-
-  end
-
   def download
-    @doc = Document.find(params[:id])
-    send_file "#{@doc.doc_file.path}", disposition: 'attachment', x_sendfile: true
+    authorize @document
+    send_file "#{@document.doc_file.path}", disposition: 'attachment', x_sendfile: true
   end
 
   private
@@ -82,10 +80,6 @@ class DocumentsController < ApplicationController
 
   def set_document
     @document = Document.find(params[:id])
-  end
-
-  def set_perms
-    @document.user == @user ? @perms = @document.doc_permissions : @perms = false
   end
 
   def document_params

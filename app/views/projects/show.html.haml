@@ -6,15 +6,20 @@
         %h1
           PROJECT:
           =@project.title.upcase
+        .edit_link
+          - if policy(@project).update?
+            =link_to 'Edit', edit_project_path(@project)
       .description
         =@project.description
       .primary-content
         .col-xs-12.col-md-9
-          -if @projects.exists?
+          -if @documents.exists?
             .project-panel
               %h4
                 %i.fa.fa-sitemap
-                PROJECTS
+                DOCUMENTS
+            -@documents.each do |d|
+              %p= doc_title(d)
         .col-xs-12.col-md-3
           -if @documents.exists?
             .doc-panel

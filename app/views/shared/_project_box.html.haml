@@ -6,7 +6,7 @@
       %li.username= link_to @project.title, edit_project_path(@project)
     %li
       Documents: 
-      = @project.assets.length
+      = @documents.length
     %li
       Members: 
       = @project.stakeholders.length

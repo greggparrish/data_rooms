@@ -11,9 +11,9 @@
             -@projects.each do |p|
               .row
                 .col-xs-12.col-sm-3.col-md-2
-                  =link_to image_tag(p.project.thumbnail), project_path(p.project) 
+                  =link_to image_tag(p.thumbnail), project_path(p)
                 .col-xs-12.col-sm-9.col-md-10
-                  =link_to p.project.title, project_path(p.project)
+                  =link_to p.title, project_path(p)
         .col-xs-12.col-md-3
     =render 'shared/left_sidebar'
 

@@ -15,26 +15,24 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: [:index, :create]
+  after_filter :verify_policy_scoped, :only => :index
 
   def index
-    @projects = @user.projects
-    @projects = @user.stakeholders.order('created_at desc').limit(2)
+    @projects = policy_scope(Project)
   end
 
   def show
-    @document = @user.documents.new
-    @documents = @project.documents
+    authorize @project
+    @projects = policy_scope(Project)
+    @documents = policy_scope(Document).joins(:projects).where(projects: {id: @project})
+    @document = @project.assets.new
     @folder = Folder.new
     @folders = @project.folders
-    @projects = @user.projects
   end
 
   def new
     @project = @user.projects.new
-  end
-
-  def document
-
   end
 
   def create
@@ -50,9 +48,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    authorize @project, :update?
   end
 
   def update
+    authorize @project
     if @project.update(project_params)
       redirect_to project_path(@project)
     else
@@ -61,11 +61,19 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    authorize @project
     @project.destroy
     redirect_to :back
   end
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   private
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action on this project."
+    redirect_to(@project)
+  end
+
   def set_user
     @user = current_user
   end

@@ -1,12 +1,17 @@
-- provide(:title, @team.title)
--breadcrumb :team, @team
+- provide(:title, 'TEAMS: '+@team.title.upcase)
 .container
-  .row
-    .col-lg-12
-      %p#notice= notice
-      = image_tag @team.thumbnail
-      %h1= @team.title
-      %p= @team.description
-      %p= link_to("EDIT", edit_team_path(@team))
+  .row.row-eq-height
+    .col-sm-12.col-md-10.col-md-push-2.primary
+      .title
+        %h1
+          TEAM:
+          =@team.title.upcase
+        .edit_link
+          - if policy(@team).update?
+            =link_to 'Edit', edit_team_path(@team)
+      .description
+        =@team.description
+      .primary-content
+    =render 'shared/left_sidebar'
 
 

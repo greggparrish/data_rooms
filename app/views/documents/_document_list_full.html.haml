@@ -13,11 +13,13 @@
       = d.description
   %ul.toolbar
     %li
-      = link_to document_path(d), :method => :delete, :data => { :confirm => 'Are you sure?' }, "data-original-title" => "Delete" do
-        %i.fa.fa-trash
-    %li
-      =link_to document_url(d) do
-        %i.fa.fa-download
-    %li
       =link_to pdfjs.full_path(file: document_url(d)) do
         %i.fa.fa-eye
+    - if policy(d).download?
+      %li
+        =link_to document_url(d) do
+          %i.fa.fa-download
+    - if policy(d).destroy?
+      %li
+        = link_to document_path(d), :method => :delete, :data => { :confirm => 'Are you sure?' }, "data-original-title" => "Delete" do
+          %i.fa.fa-trash

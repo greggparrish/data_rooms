@@ -14,9 +14,15 @@ class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
   before_action :set_team, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: [:index, :create]
+  after_filter :verify_policy_scoped, :only => :index
 
   def index
-    @teams = @user.teams
+    @teams = policy_scope(Team)
+  end
+
+  def show
+    authorize @team
   end
 
   def new
@@ -35,13 +41,13 @@ class TeamsController < ApplicationController
     end
   end
 
-  def show
-  end
 
   def edit
+    authorize @team, :update? 
   end
 
   def update
+    authorize @team
     if @team.update(team_params)
       redirect_to teams_path
     else
@@ -50,11 +56,19 @@ class TeamsController < ApplicationController
   end
 
   def destroy
+    authorize @team
     @team.destroy
     redirect_to teams_path
   end
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   private
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(@team)
+  end
+
   def set_team
     @team = Team.find(params[:id])
   end

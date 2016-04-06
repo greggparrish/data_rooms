@@ -1,0 +1,12 @@
+.sidebar-box.team
+  %ul.list-unstyled
+    %li
+      = link_to image_tag(@team.thumbnail), edit_team_path(@team)
+    %h2
+      %li.username= link_to @team.title, edit_team_path(@team)
+    %li
+      Members: 
+      = @team.memberships.length
+
+
+

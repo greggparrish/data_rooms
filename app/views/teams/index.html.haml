@@ -1,14 +1,21 @@
--breadcrumb :teams
+- provide(:title, 'TEAMS')
 .container
-  .row
-    .col-sm-12
-      %h4 TEAMS
-      = link_to 'New team', new_team_path
-      -if @teams.exists?
-        .container
-          .row
-            - @teams.each do |t|
-              = render partial: 'team_list_full', locals: {team: t}
-      -else 
-        %h3 No Teams
+  .row.row-eq-height
+    .col-sm.12.col-md-10.col-md-push-2.primary
+      .title
+        %h1
+          TEAMS
+      .primary-content
+        .col-xs-12
+          -if @teams.exists?
+            -@teams.each do |t|
+              .row
+                .col-xs-12.col-sm-3.col-md-2
+                  =link_to image_tag(t.thumbnail), team_path(t)
+                .col-xs-12.col-sm-9.col-md-10
+                  =link_to t.title, team_path(t)
+        .col-xs-12.col-md-3
+    =render 'shared/left_sidebar'
+
+
 

@@ -34,7 +34,7 @@ module ApplicationHelper
     if a == 'index'
       render(partial: 'shared/user_box') + render(partial: 'shared/notifications_box')
     elsif c == 'projects' && a == 'show'
-      render(partial: 'shared/project_box') + render(partial: 'shared/members_box')
+      render(partial: 'shared/project_box') + render(partial: 'shared/stakeholders_box')
     elsif c == 'documents' && a == 'show'
       render(partial: 'shared/document_box') + render(partial: 'shared/notifications_box')
     elsif c == 'teams' && a == 'show'

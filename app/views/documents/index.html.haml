@@ -1,15 +1,23 @@
--breadcrumb :documents
+- provide(:title, 'DOCUMENTS')
 .container
-  .row
-    .col-xs-12.col-sm-9.pull-right
-      %h4 DOCUMENTS
-      = link_to 'New document', new_document_path
-      -if @documents.exists?
-        .container
-          .row
-            - @documents.each do |document|
-              = render partial: 'document_list_full', locals: {d: document}
-      -else 
-        %h3 NO DOCS
-    .col-xs-12.col-sm-3.pull-left
-      = render partial: 'document_index_left_nav.html.haml'
+  .row.row-eq-height
+    .col-sm.12.col-md-10.col-md-push-2.primary
+      .title
+        %h1
+          DOCUMENTS
+      .primary-content
+        .col-xs-12
+          -if @documents.exists?
+            %table.table.table-striped
+              -@documents.each do |d|
+                %tr
+                  %td
+                    = link_to doc_title(d), document_path(d)
+                    %p= doc_meta(d)
+                  %td
+                    %ul.list-inline
+                      =doc_toolbar_view(d)
+                      =doc_toolbar_download(d)
+                      =doc_toolbar_delete(d)
+        .col-xs-12.col-md-3
+    =render 'shared/left_sidebar'

@@ -5,7 +5,7 @@
         %tr
           %td
             %ul.list-unstyled
-              %li.date= d.document.created_at.strftime("%b %d, %Y")
+              %li.date= d.created_at.strftime("%b %d, %Y")
               %li
-                = link_to doc_title(d.document), document_path(d.document)
+                = link_to doc_title(d), document_path(d)
 

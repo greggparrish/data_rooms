@@ -6,9 +6,6 @@
         %h1
           PROJECT:
           =@project.title.upcase
-        .edit_link
-          - if policy(@project).update?
-            =link_to 'Edit', edit_project_path(@project)
       .description
         =@project.description
       .primary-content
@@ -17,9 +14,9 @@
             .project-panel
               %h4
                 %i.fa.fa-sitemap
-                DOCUMENTS
-            -@documents.each do |d|
-              %p= doc_title(d)
+                PROJECTS
+              - @documents.each do |p|
+                = render partial: 'shared/proj_doc_table', locals: {p: p}
         .col-xs-12.col-md-3
           -if @documents.exists?
             .doc-panel

@@ -32,13 +32,20 @@ module ApplicationHelper
   # Fill in boxes in left sidebar based on page
   def sidebar_modules(c,a)
     if a == 'index'
-      render(partial: 'shared/user_box') + render(partial: 'shared/notifications_box')
+      render(partial: 'shared/sb_user_module') + render(partial: 'shared/sb_notifications_module')
     elsif c == 'projects' && a == 'show'
-      render(partial: 'shared/project_box') + render(partial: 'shared/stakeholders_box')
+      render(partial: 'shared/sb_project_module') + render(partial: 'shared/sb_stakeholders_module')
     elsif c == 'documents' && a == 'show'
-      render(partial: 'shared/document_box') + render(partial: 'shared/notifications_box')
+      render(partial: 'shared/sb_document_module') + render(partial: 'shared/sb_notifications_module')
     elsif c == 'teams' && a == 'show'
-      render(partial: 'shared/team_box') + render(partial: 'shared/members_box')
+      render(partial: 'shared/sb_team_module') + render(partial: 'shared/sb_members_module')
+    end
+  end
+
+  # Add star next to admins in membership boxes
+  def admin_icon(association)
+    if association.abilities <= 2
+      haml_tag :i, class: "fa fa-star text-warning"
     end
   end
 

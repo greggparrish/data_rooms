@@ -9,6 +9,10 @@
   .sidebar-box {
     background-color: $black_haze;
     margin-bottom: 5px;
+    .title {
+      background-color: $light_grey;
+      padding: 2px;
+    }
     &.user, &.project {
       display: none; 
       font-family: $font_3;
@@ -26,7 +30,7 @@
         display: block;
       }
       ul {
-        h2 {
+        h3 {
           margin: 0;
         }
         li.username {

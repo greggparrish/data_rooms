@@ -9,12 +9,12 @@
           PROJECT:
         =link_to p.project.title, project_path(p.project)
     .col-xs-12
-    %ul.list-unstyled.project-box-list
-      %li PROJECT MANAGERS:
-      %li DOCUMENTS: #{p.project.documents.length}
-      %li MEMBERS: #{p.project.stakeholders.length}
-      %li LAST ACTIVITY:
-      %li NEXT ACTION DATE:
+      %ul.list-unstyled.project-box-list
+        %li PROJECT MANAGERS:
+        %li DOCUMENTS: #{p.project.documents.length}
+        %li MEMBERS: #{p.project.stakeholders.length}
+        %li LAST ACTIVITY:
+        %li NEXT ACTION DATE:
   .col-xs-12
     %table.table.table-striped
       -p.project.documents.each do |d|

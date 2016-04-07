@@ -11,27 +11,33 @@ h1,h2,h3,h4,h5,h6 {
   font-family: $font_0, $font_1, $font_2, $font_3;
   padding: 0;
   margin: 12px;
+  text-transform: uppercase;
 }
 
+/* Page titles just under header */ 
 h1 {
   font-size: 1.3em;  
   font-weight: 700;
 }
 
+/* Lighter class name: *PROJECT*: NAME */ 
 span.pretitle {
   color: $muted_text_dark;
 }
 
+/* Sidebar-boxes headings: NOTIFICATIONS  */ 
 h2 {
   font-size: 1em;
   font-weight: 700;
-  text-transform: uppercase;
 }
 
+/* Bold header within sidebar-boxes: name in userbox on dash  */ 
 h3 {
-
+  font-size: .9em;
+  font-weight: 700;
 }
 
+/* Header text with shadow to stand out on dark header bg   */ 
 h4 {
   font-size: 1.2em;
   text-shadow: $text-shadow; 

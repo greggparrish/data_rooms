@@ -1,0 +1,22 @@
+.sidebar-box.members.panel.panel-default
+  .panel-heading.title
+    %h3
+      %i.fa.fa-users
+      MEMBERS
+  .panel-body
+    .input-group
+      %input.form-control{:placeholder => "Search", :type => "text"}
+      %span.input-group-addon.search-button
+        %i.fa.fa-search
+    %br/
+    %table.table.table-striped.table-hover
+      %tbody
+        -@project.stakeholders.each do |s|
+          %tr
+            %td
+              =link_to image_tag(s.user.avatar, class: 'img-circle'), user_path(s.user)
+            %td.member-name
+              =link_to s.user.name, user_path(s.user)
+              -admin_icon(s)
+
+

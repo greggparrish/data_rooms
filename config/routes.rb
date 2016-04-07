@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :doctrees, :folders, :doc_permissions, :projects, :teams, :documents, :users
   resources :projects do
-    resources :documents, to: 'projects#document'
+    resources :documents, to: 'documents#show'
+    resources :folders, to: 'projects#folder'
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config

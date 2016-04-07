@@ -13,7 +13,7 @@
                 %i.fa.fa-sitemap
                 PROJECTS
               - @projects.each do |p|
-                = render partial: 'project_boxes', locals: {p: p}
+                = render partial: 'shared/doc_table', locals: {p: p}
         .col-xs-12.col-md-3
           -if @documents.exists?
             .doc-panel

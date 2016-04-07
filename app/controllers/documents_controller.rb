@@ -28,6 +28,9 @@ class DocumentsController < ApplicationController
 
   def show
     authorize @document
+    if params[:project_id]
+      @project = Project.friendly.find(params[:project_id])
+    end
   end
 
   def new

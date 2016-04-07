@@ -1,6 +1,0 @@
-.sidebar-box.members
-  %h6 MEMBERS
-  -@project.stakeholders.each do |s|
-    %ul.list-unstyled.list-inline
-      %li= image_tag(s.user.avatar, class: 'img-circle')
-      %li= s.user.name

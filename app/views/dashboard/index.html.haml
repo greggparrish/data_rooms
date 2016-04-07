@@ -7,18 +7,18 @@
           DASHBOARD
       .primary-content
         .col-xs-12.col-md-9
-          -if @projects.exists?
+          -unless @assets.empty?
             .project-panel
               %h4
                 %i.fa.fa-sitemap
                 PROJECTS
-              - @projects.each do |p|
-                = render partial: 'shared/doc_table', locals: {p: p}
+              -@assets.each do |p, docs|
+                = render partial: 'shared/project_box', locals: {p: p, docs: docs}
         .col-xs-12.col-md-3
-          -if @documents.exists?
+          -unless @assets.empty?
             .doc-panel
               %h4
                 %i.fa.fa-file-text
                 RECENT DOCUMENTS
-              = render partial: 'doc_boxes'
+              = render partial: 'shared/doc_box'
     =render 'shared/left_sidebar'

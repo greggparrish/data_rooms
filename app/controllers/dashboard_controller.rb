@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
 
   def index
     @user = current_user
-    @documents = policy_scope(Document).order('created_at desc').limit(8)
-    @projects = policy_scope(Project).order('created_at desc').limit(2)
+    @assets = policy_scope(Asset).group_by(&:project)
+    @documents = policy_scope(Document).order('created_at DESC').limit(10)
   end
 end

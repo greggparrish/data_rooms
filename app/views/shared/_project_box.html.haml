@@ -1,0 +1,26 @@
+.col-xs-12.project-box
+  .col-xs-12.col-sm-3.col-md-2
+    =link_to project_path(p) do
+      =image_tag(p.thumbnail) 
+  .col-xs-12.col-sm-9.col-md-10
+    .col-xs-12.project-box-header
+      %h2
+        %span.pretitle
+          PROJECT:
+        =link_to p.title, project_path(p)
+    .col-xs-12
+      %ul.list-unstyled.project-box-list
+        %li PROJECT MANAGERS:
+        %li DOCUMENTS: #{docs.count} 
+        %li MEMBERS: #{p.stakeholders.count} 
+        %li LAST ACTIVITY:
+        %li NEXT ACTION DATE:
+  .col-xs-12
+    %table.table.table-striped
+      -docs.each do |d|
+        %tr
+          %td
+            = link_to doc_title(d.document), project_document_url(p,d.document)
+          %td.view-link
+            = link_to pdfjs.full_path(file: document_url(d.document)) do
+              -filetype_icon(d.document.file_content_type)

@@ -15,8 +15,7 @@
               %h4
                 %i.fa.fa-sitemap
                 PROJECTS
-              - @documents.each do |p|
-                = render partial: 'shared/proj_doc_table', locals: {p: p}
+              = render partial: 'shared/doc_box', locals: {p: p}
         .col-xs-12.col-md-3
           -if @documents.exists?
             .doc-panel

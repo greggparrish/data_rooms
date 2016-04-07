@@ -1,9 +1,0 @@
-
-= link_to team_path(team) do
-  =image_tag team.thumbnail
-  =team.title
-
-%p
-  = link_to team_path(team), :method => :delete, :data => { :confirm => 'Are you sure?' }, "data-original-title" => "Delete" do
-    DELETE
-  =link_to 'EDIT',edit_team_path(team)

@@ -1,4 +1,4 @@
-- pid ||= 'false'
+- project_id ||= 'false'
 - if @document.errors.any?
   #error_explanation
     %h2
@@ -10,11 +10,11 @@
 .form-wrapper
   = simple_form_for @document, html: { multipart: true } do |f|
     .form-group
-      = f.hidden_field :pid, value: pid
+      = f.hidden_field :project_id, value: project_id
       = f.file_field :doc_file
       -if @projects.any?
         .form-group
-          = f.association :projects, as: :check_boxes, checked: (defined?(pid)? pid : '') 
+          = f.association :projects, as: :check_boxes, checked: (defined?(project_id)? project_id : '') 
     .form-group.text-center
       = f.input :title
     .form-group.text-center

@@ -7,10 +7,10 @@
           PROJECTS
       .primary-content
         .col-xs-12.col-md-9
-          -if @projects.exists?
+          -unless @projects.empty?
             .project-panel
-              - @projects.each do |p|
-                = render partial: 'shared/project_box', locals: {p: p}
+              - @projects.each do |p, docs|
+                = render partial: 'shared/project_box', locals: {p: p, docs: docs}
         .col-xs-12.col-md-3
     =render 'shared/left_sidebar'
 

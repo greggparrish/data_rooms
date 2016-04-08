@@ -12,9 +12,18 @@
         .col-xs-12.col-md-9
           -if @documents.exists?
             .project-panel
-              %h4
-                %i.fa.fa-sitemap
-                PROJECTS
+              .project-toolbar
+                %ul.list-inline
+                  /* -if policy(@project).update?
+                  %li.nav-item.btn-group
+                    %a.dropdown-toggle.nav-link#projectMenu{'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', :type => 'button'}
+                      %i.fa.fa-plus
+                      NEW
+                    %ul.dropdown-menu{'aria-labelledby' => 'projectMenu'}
+                      %li= link_to 'DOCUMENT', '#', class: 'btn btn-primary', :data => {:target => ".new-document-modal", :toggle => "modal"}
+                      %li= link_to 'FOLDER', '#', class: 'btn btn-primary', :data => {:target => ".new-folder-modal", :toggle => "modal"}
+                  %li SORT
+                  %li CHECKBOX
               = render partial: 'shared/doc_box', locals: {p: p}
         .col-xs-12.col-md-3
           -if @documents.exists?
@@ -23,4 +32,13 @@
                 %i.fa.fa-file-text
                 RECENT DOCUMENTS
     =render 'shared/left_sidebar'
+/* MODALS */
+.modal.fade.new-document-modal{"aria-hidden" => "true", "aria-labelledby" => "newDocumentModal", :role => "dialog"}
+  .modal-dialog.modal-lg
+    .modal-content
+      =render "documents/form", project_id: @project.id
+.modal.fade.new-folder-modal{"aria-hidden" => "true", "aria-labelledby" => "newFolderModal", :role => "dialog"}
+  .modal-dialog.modal-lg
+    .modal-content
+      =render "folders/form", project_id: @project.id
 

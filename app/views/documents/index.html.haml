@@ -7,6 +7,7 @@
           DOCUMENTS
       .primary-content
         .col-xs-12
+          = link_to "NEW", new_document_path
           -if @documents.exists?
             %table.table.table-striped
               -@documents.each do |d|

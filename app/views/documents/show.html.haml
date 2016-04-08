@@ -1,3 +1,4 @@
+- @project ||= false
 - provide(:title, 'DOCUMENTS: '+@document.title.upcase)
 .container
   .row.row-eq-height
@@ -6,9 +7,10 @@
         %h1
           DOCUMENT:
           =doc_title(@document)
-          =@project.title
-      =@document.description
       .description
+        - unless @project == false
+          PROJECT: 
+          =link_to @project.title.upcase, project_path(@project)
         =@document.description
       .edit_link
         - if policy(@document).update?

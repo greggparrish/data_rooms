@@ -19,14 +19,14 @@ class ProjectsController < ApplicationController
   after_filter :verify_policy_scoped, :only => :index
 
   def index
-    @projects = policy_scope(Project)
+    @projects = policy_scope(Asset).group_by(&:project)
   end
 
   def show
     authorize @project
     @projects = policy_scope(Project)
     @documents = policy_scope(Document).joins(:projects).where(projects: {id: @project})
-    @document = @project.assets.new
+    @document = @project.documents.new
     @folder = Folder.new
     @folders = @project.folders
   end

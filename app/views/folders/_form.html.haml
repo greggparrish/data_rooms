@@ -1,3 +1,4 @@
+- project_id ||= 'false'
 .container
   .row
     .col-sm-12
@@ -7,9 +8,5 @@
           = f.hidden_field :project_id, value: project_id
         .form-inputs
           = f.input :title
-        .form-group
-        
-          = f.simple_fields_for :documents do |d|
-            = render 'folders/documents', d: d
         .form-actions
           = f.button :submit

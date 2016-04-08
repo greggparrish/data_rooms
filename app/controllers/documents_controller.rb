@@ -19,7 +19,7 @@ class DocumentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_document, only: [:show, :edit, :update, :destroy, :permissions, :download]
   before_action :set_user
-  after_action :verify_authorized, except: [:index, :create]
+  after_action :verify_authorized, except: [:index, :new, :create]
   after_filter :verify_policy_scoped, :only => :index
 
   def index

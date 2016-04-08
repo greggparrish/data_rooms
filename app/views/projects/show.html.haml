@@ -20,8 +20,9 @@
                       %i.fa.fa-plus
                       NEW
                     %ul.dropdown-menu{'aria-labelledby' => 'projectMenu'}
-                      %li= link_to 'DOCUMENT', '#', class: 'btn btn-primary', :data => {:target => ".new-document-modal", :toggle => "modal"}
-                      %li= link_to 'FOLDER', '#', class: 'btn btn-primary', :data => {:target => ".new-folder-modal", :toggle => "modal"}
+                      %li= link_to 'DOCUMENT', '#', :data => {:target => ".new-document-modal", :toggle => "modal"}
+                      - if policy(@project).update? 
+                        %li= link_to 'FOLDER', '#', :data => {:target => ".new-folder-modal", :toggle => "modal"}
                   %li SORT
                   %li CHECKBOX
               = render partial: 'shared/doc_box', locals: {p: p}
@@ -37,8 +38,9 @@
   .modal-dialog.modal-lg
     .modal-content
       =render "documents/form", project_id: @project.id
-.modal.fade.new-folder-modal{"aria-hidden" => "true", "aria-labelledby" => "newFolderModal", :role => "dialog"}
-  .modal-dialog.modal-lg
-    .modal-content
-      =render "folders/form", project_id: @project.id
+- if policy(@project).update? 
+  .modal.fade.new-folder-modal{"aria-hidden" => "true", "aria-labelledby" => "newFolderModal", :role => "dialog"}
+    .modal-dialog.modal-lg
+      .modal-content
+        =render "folders/form", project_id: @project.id
 

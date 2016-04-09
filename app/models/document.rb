@@ -16,6 +16,7 @@
 #
 
 class Document < ActiveRecord::Base
+  include Sortable
   before_create :randomize_id
   has_many :users, through: :doc_permissions
   has_many :doc_permissions, dependent: :delete_all

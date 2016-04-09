@@ -12,5 +12,7 @@ Bundler.require(*Rails.groups)
 module Datarooms
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
+    config.autoload_paths += %W(#{config.root}/app/services)
+    config.eager_load_paths += %W(#{config.root}/app/services)
   end
 end

@@ -12,6 +12,7 @@
 #
 
 class Project < ActiveRecord::Base
+  include Sortable
   before_create :randomize_id
   has_many :stakeholders, dependent: :delete_all
   has_many :users, through: :stakeholders

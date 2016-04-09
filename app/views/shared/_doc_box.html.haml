@@ -4,8 +4,6 @@
       - @documents.each do |d|
         %tr
           %td
-            %ul.list-unstyled
-              %li.date= d.created_at.strftime("%b %d, %Y")
-              %li
-                = link_to doc_title(d), document_path(d)
+            %span.date= d.created_at.strftime("%b %d, %Y")
+            %span= link_to doc_title(d), document_path(d)
 

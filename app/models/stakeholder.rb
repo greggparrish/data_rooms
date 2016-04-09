@@ -12,6 +12,8 @@
 #
 
 class Stakeholder < ActiveRecord::Base
+  include Approvable
+  include Sortable
   belongs_to :user
   belongs_to :project
 end

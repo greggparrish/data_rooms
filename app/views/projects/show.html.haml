@@ -12,20 +12,21 @@
         .col-xs-12.col-md-9
           -if @documents.exists?
             .project-panel
-              .project-toolbar
-                %ul.list-inline
-                  /* -if policy(@project).update?
-                  %li.nav-item.btn-group
-                    %a.dropdown-toggle.nav-link#projectMenu{'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', :type => 'button'}
-                      %i.fa.fa-plus
-                      NEW
-                    %ul.dropdown-menu{'aria-labelledby' => 'projectMenu'}
-                      %li= link_to 'DOCUMENT', '#', :data => {:target => ".new-document-modal", :toggle => "modal"}
-                      - if policy(@project).update? 
-                        %li= link_to 'FOLDER', '#', :data => {:target => ".new-folder-modal", :toggle => "modal"}
-                  %li SORT
-                  %li CHECKBOX
-              = render partial: 'shared/doc_box', locals: {p: p}
+              .col-xs-12.project-box
+                .project-toolbar
+                  %ul.list-inline
+                    /* -if policy(@project).update?
+                    %li.nav-item.btn-group
+                      %a.dropdown-toggle.nav-link#projectMenu{'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', :type => 'button'}
+                        %i.fa.fa-plus
+                        NEW
+                      %ul.dropdown-menu{'aria-labelledby' => 'projectMenu'}
+                        %li= link_to 'DOCUMENT', '#', :data => {:target => ".new-document-modal", :toggle => "modal"}
+                        - if policy(@project).update? 
+                          %li= link_to 'FOLDER', '#', :data => {:target => ".new-folder-modal", :toggle => "modal"}
+                    %li SORT
+                    %li CHECKBOX
+                = render partial: 'shared/doc_box', locals: {p: p}
         .col-xs-12.col-md-3
           -if @documents.exists?
             .doc-panel

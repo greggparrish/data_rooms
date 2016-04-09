@@ -44,7 +44,7 @@ class DocumentsController < ApplicationController
     respond_to do |f|
       if @document.save
         @document.doc_permissions.create(user_id: @user.id, abilities: 0, expires: Time.zone.parse('2099-01-01 21:00'))
-        f.html { redirect_to params[:document][:pid] != 'false' ? project_path(params[:document][:pid]) : @document, notice: 'Document added.' }
+        f.html { redirect_to params[:document][:project_id] != 'false' ? project_path(params[:document][:project_id]) : @document, notice: 'Document added.' }
         f.json { render action: 'show', status: :created, location: @document }
       else
         f.html { render action: 'new' }

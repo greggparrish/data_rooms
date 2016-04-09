@@ -10,6 +10,8 @@
 #
 
 class Asset < ActiveRecord::Base
+  include Approvable
+  include Sortable
   belongs_to :document
   belongs_to :project
 end

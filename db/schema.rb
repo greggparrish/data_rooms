@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408130811) do
+ActiveRecord::Schema.define(version: 20160409163027) do
 
   create_table "assets", force: :cascade do |t|
-    t.integer  "document_id", limit: 4
-    t.integer  "project_id",  limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.boolean  "approved",    limit: 1
+    t.integer  "document_id",  limit: 4
+    t.integer  "project_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.boolean  "approved",     limit: 1, null: false
+    t.integer  "suggested_by", limit: 4
   end
 
   add_index "assets", ["document_id"], name: "index_assets_on_document_id", using: :btree
@@ -89,7 +90,7 @@ ActiveRecord::Schema.define(version: 20160408130811) do
     t.datetime "updated_at",           null: false
     t.integer  "abilities",  limit: 4
     t.datetime "expiration"
-    t.boolean  "approved",   limit: 1
+    t.boolean  "approved",   limit: 1, null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -110,7 +111,7 @@ ActiveRecord::Schema.define(version: 20160408130811) do
     t.datetime "updated_at",           null: false
     t.integer  "abilities",  limit: 4
     t.datetime "expiration"
-    t.boolean  "approved",   limit: 1
+    t.boolean  "approved",   limit: 1, null: false
   end
 
   add_index "stakeholders", ["project_id"], name: "index_stakeholders_on_project_id", using: :btree

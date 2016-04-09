@@ -9,9 +9,7 @@
   }
 }
 .project-panel {
-  border: 1px solid $grey;
   overflow: auto;
-  box-shadow: 0 3px 2px $light_grey;
   margin-bottom: 10px;
   @include media-breakpoint-up(md) {
     margin: 5px;

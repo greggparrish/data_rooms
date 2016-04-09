@@ -12,6 +12,8 @@
 #
 
 class Membership < ActiveRecord::Base
+  include Approvable
+  include Sortable
   belongs_to :user
   belongs_to :team
 end

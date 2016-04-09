@@ -11,6 +11,7 @@
 #
 
 class Team < ActiveRecord::Base
+  include Sortable
   has_many :memberships, dependent: :delete_all
   has_many :users, through: :memberships
   mount_uploader :thumbnail, ProjectUploader

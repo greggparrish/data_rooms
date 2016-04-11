@@ -5,9 +5,6 @@
 module Approvable
   extend ActiveSupport::Concern
   included do
-    # By default all models should be ordered
-    # showing only those already approved
-    default_scope { approved }
     scope :approved, -> { where(approved: true) }
     scope :pending, -> { where(approved: false) }
   end

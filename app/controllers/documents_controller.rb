@@ -39,17 +39,11 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = @user.documents.build(document_params)
-    @document.user_id = @user.id
-    respond_to do |f|
-      if @document.save
-        @document.doc_permissions.create(user_id: @user.id, abilities: 0, expires: Time.zone.parse('2099-01-01 21:00'))
-        f.html { redirect_to params[:document][:project_id] != 'false' ? project_path(params[:document][:project_id]) : @document, notice: 'Document added.' }
-        f.json { render action: 'show', status: :created, location: @document }
-      else
-        f.html { render action: 'new' }
-        f.json { render json: @document.errors, status: :unprocessable_entity }
-      end
+    @document = Documents::CreateDocument.call(@user, document_params)
+    if @document.persisted?
+      redirect_to @document, notice: "Document successfully created."
+    else
+      render action: "new"
     end
   end
 
@@ -86,6 +80,6 @@ class DocumentsController < ApplicationController
   end
 
   def document_params
-    params.require(:document).permit(:doc_file, :title, :description, :user_id, :document_id, :abilities, :expiration, project_ids: [])
+    params.require(:document).permit(:doc_file, :title, :description, :user_id, :document_id, :abilities, :expiration, :approved, project_ids: [])
   end
 end

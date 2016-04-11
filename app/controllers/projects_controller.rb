@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   def show
     authorize @project
     @projects = policy_scope(Project)
-    @documents = policy_scope(Document).joins(:projects).where(projects: {id: @project})
+    @documents = policy_scope(Asset).approved.joins(:project).where(projects: {id: @project})
     @document = @project.documents.new
     @folder = Folder.new
     @folders = @project.folders

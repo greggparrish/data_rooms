@@ -17,7 +17,7 @@
         %li NEXT ACTION DATE:
   .col-xs-12
     %table.table.table-striped
-      -docs.each do |d|
+      -docs.first(5).each do |d|
         %tr
           %td
             = link_to doc_title(d.document), project_document_url(p,d.document)

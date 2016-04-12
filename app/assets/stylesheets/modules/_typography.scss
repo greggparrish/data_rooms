@@ -49,11 +49,11 @@ h4 {
 .text-primary {
   color: $med_grey;
 }
-.doc-meta {
+span.doc-meta {
   color: $muted_text_dark;
+  font-size: .9em;
   font-size: .85em;
   display: block;
-  margin-left: 5px;
 }
 
 p {

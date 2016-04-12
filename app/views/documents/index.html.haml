@@ -13,8 +13,8 @@
               -@documents.each do |d|
                 %tr
                   %td
+                    %span.doc-meta= doc_meta(d)
                     = link_to doc_title(d), document_path(d)
-                    %p= doc_meta(d)
                   %td
                     %ul.list-inline
                       =doc_toolbar_view(d)

@@ -1,20 +1,11 @@
-- project_id ||= 'false'
-- if @document.errors.any?
-  #error_explanation
-    %h2
-      = pluralize(@document.errors.count, "error") 
-      prohibited this document from being saved:
-    %ul
-      - @document.errors.full_messages.each do |message|
-        %li= message
+- project_id ||= session[:project_id]
 .form-wrapper
   = simple_form_for @document, html: { multipart: true } do |f|
     .form-group
       = f.hidden_field :project_id, value: project_id
       = f.file_field :doc_file
-      -unless @projects.nil?
-        .form-group
-          = f.association :projects, as: :check_boxes, checked: (defined?(project_id)? project_id : '') 
+      .form-group
+        = f.association :projects, as: :check_boxes, checked: (defined?(project_id)? project_id : '') 
     .form-group.text-center
       = f.input :title
     .form-group.text-center

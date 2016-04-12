@@ -30,7 +30,7 @@ nav.navbar-default {
     ul {
       float: right;
       li {
-        padding: 0 10px;
+        padding: 3px 10px;
         .navtext {
           display: none;
           @include media-breakpoint-up(md) {
@@ -38,7 +38,7 @@ nav.navbar-default {
           }
         }
         &.active {
-          background-color: $med_grey;
+          border-bottom: 1px solid $orange;
         }
         ul.dropdown-menu li {
           padding: 10px;

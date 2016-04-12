@@ -5,10 +5,6 @@
       MEMBERS
   .panel-body
     .input-group
-      %input.form-control{:placeholder => "Search", :type => "text"}
-      %span.input-group-addon.search-button
-        %i.fa.fa-search
-    %br/
     %table.table.table-striped.table-hover
       %tbody
         -@team.memberships.each do |t|

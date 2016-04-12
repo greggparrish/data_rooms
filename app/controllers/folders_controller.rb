@@ -11,30 +11,34 @@
 #
 
 class FoldersController < InheritedResources::Base
+  before_action :set_user
+  before_action :authenticate_user!
+
+
   def new
-    @project = Project.find(params[:project][:project_id])
     @folder = @project.folder.new
   end
 
   def create
-    @document = @user.documents.build(document_params)
-    @projects = @user.projects
-    @document.user_id = @user.id
+    @folder = Folders::CreateFolder.call(@user, folder_params)
     respond_to do |f|
-      if @document.save
-        @document.doc_permissions.create(user_id: @user.id, abilities: 0, expires: Time.zone.parse('2099-01-01 21:00'))
-        f.html { redirect_to params[:document][:pid] != 'false' ? project_path(params[:document][:pid]) : @document, notice: 'Document added.' }
-        f.json { render action: 'show', status: :created, location: @document }
+      if @folder.save
+        f.html { redirect_to params[:document][:pid] != 'false' ? project_path(params[:folder][:project_id]) : @folder, notice: 'Folder added.' }
+        f.json { render action: 'show', status: :created, location: @folder }
       else
         f.html { render action: 'new' }
-        f.json { render json: @document.errors, status: :unprocessable_entity }
+        f.json { render json: @folder.errors, status: :unprocessable_entity }
       end
     end
   end
 
   private
-    def folder_params
-      params.require(:folder).permit(:title, :slug, :project_id, :document_id)
-    end
+  def set_user
+    @user = current_user
+  end
+
+  def folder_params
+    params.require(:folder).permit(:title, :slug, :project_id, :created_by, document_ids:[])
+  end
 end
 

@@ -12,29 +12,47 @@
 
 class FoldersController < InheritedResources::Base
   before_action :set_user
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :file_documents]
   before_action :authenticate_user!
 
-
   def new
-    @folder = @project.folder.new
+    @folder = @folder.new
   end
 
   def create
-    @folder = Folders::CreateFolder.call(@user, folder_params)
-    respond_to do |f|
-      if @folder.save
-        f.html { redirect_to params[:document][:pid] != 'false' ? project_path(params[:folder][:project_id]) : @folder, notice: 'Folder added.' }
-        f.json { render action: 'show', status: :created, location: @folder }
+    @project = Project.find(params[:folder][:project_id])
+    if FolderPolicy.new(@user, @project).update? 
+      @folder = Folders::CreateFolder.call(@user, @project, folder_params)
+      if @folder.persisted?
+        redirect_to @project, notice: "Folder successfully created."
       else
-        f.html { render action: 'new' }
-        f.json { render json: @folder.errors, status: :unprocessable_entity }
+        render action: "new"
       end
+    else
+      redirect_to @project, alert: "Insufficient permissions"
+    end
+  end
+
+  def file_documents
+    authorize @folder
+  end
+
+  def update
+    authorize @folder
+    if @folder.update(folder_params)
+      redirect_to folder_path(@folder)
+    else
+      render :edit
     end
   end
 
   private
   def set_user
     @user = current_user
+  end
+
+  def set_folder
+    @folder = Folder.find(params[:id])
   end
 
   def folder_params

@@ -8,41 +8,18 @@
           =@project.title.upcase
       .description
         =@project.description
-      .primary-content
-        .col-xs-12.col-md-9
-          -if @documents.exists?
-            .project-panel
-              .col-xs-12.project-box
-                .project-toolbar
-                  =form_tag document_path do
-                    %ul.list-inline
-                      /* -if policy(@project).update?
-                      %li.nav-item.btn-group
-                        %a.dropdown-toggle.nav-link#projectMenu{'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', :type => 'button'}
-                          %i.fa.fa-plus
-                          NEW
-                        %ul.dropdown-menu{'aria-labelledby' => 'projectMenu'}
-                          %li= link_to 'DOCUMENT', '#', :data => {:target => ".new-document-modal", :toggle => "modal"}
-                          - if policy(@project).update? 
-                            %li= link_to 'FOLDER', '#', :data => {:target => ".new-folder-modal", :toggle => "modal"}
-                      %li SORT
-                      %li CHECKBOX
-                  = render partial: 'shared/doc_box', locals: {p: p}
-        .col-xs-12.col-md-3
-          -if @documents.exists?
-            .doc-panel
-              %h4
-                %i.fa.fa-file-text
-                RECENT DOCUMENTS
+      .col-xs-12.col-md-9.primary-content
+        -if @documents.exists?
+          = render partial: 'documents/doc_toolbar'
+          = render partial: 'documents/doc_list'
+      .col-xs-12.col-md-3
+        -if @documents.exists?
+          .doc-panel
+            %h4
+              %i.fa.fa-file-text
+              RECENT DOCUMENTS
     =render 'shared/left_sidebar'
 /* MODALS */
-.modal.fade.new-document-modal{"aria-hidden" => "true", "aria-labelledby" => "newDocumentModal", :role => "dialog"}
-  .modal-dialog.modal-lg
-    .modal-content
-      =render "documents/form", project_id: @project.id
+=render 'shared/modals/new_document_modal'
 - if policy(@project).update? 
-  .modal.fade.new-folder-modal{"aria-hidden" => "true", "aria-labelledby" => "newFolderModal", :role => "dialog"}
-    .modal-dialog.modal-lg
-      .modal-content
-        =render "folders/form", project_id: @project.id
-
+  =render 'shared/modals/new_folder_modal'

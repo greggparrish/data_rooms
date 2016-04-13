@@ -1,0 +1,5 @@
+.modal.fade.new-folder-modal{"aria-hidden" => "true", "aria-labelledby" => "newFolderModal", :role => "dialog"}
+  .modal-dialog.modal-lg
+    .modal-content
+      =render "folders/form", project_id: @project.id
+

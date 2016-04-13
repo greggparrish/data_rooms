@@ -15,4 +15,12 @@ class Folder < ActiveRecord::Base
   has_many :documents, through: :doctrees
   has_many :doctrees, dependent: :delete_all
   validates :title, presence: true
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [
+      [:project_id, :title],
+      [:project_id, :id, :title]
+    ]
+  end
 end

@@ -1,0 +1,22 @@
+=form_tag(method: 'file_documents', controller: 'folders') do
+  %ul.list-inline.project-toolbar
+    -if policy(@project).update?
+      %li.nav-item.btn-group
+        %a.dropdown-toggle.nav-link#projectMenu{'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', :type => 'button'}
+          %i.fa.fa-plus
+          NEW
+        %ul.dropdown-menu{'aria-labelledby' => 'projectMenu'}
+          %li= link_to 'DOCUMENT', '#', :data => {:target => ".new-document-modal", :toggle => "modal"}
+          - if policy(@project).update? 
+            %li= link_to 'FOLDER', '#', :data => {:target => ".new-folder-modal", :toggle => "modal"}
+        - if @folders.exists? && policy(@project).update?
+          %li.nav-item.btn-group
+            %a.dropdown-toggle.nav-link#addToFolder{'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', :type => 'button'}
+              %i.fa.fa-folder
+              ADD TO FOLDER
+            %ul.dropdown-menu{'aria-labelledby' => 'addToFolder'}
+              -@folders.each do |f|
+                %li= link_to f.title, folder_path(f)
+          %li SORT
+          %li SELECT ALL
+

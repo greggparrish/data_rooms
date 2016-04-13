@@ -24,6 +24,7 @@ html {
   padding: 0;
   margin: 0;
   background-color: $lighter_grey;
+  overflow: auto;
   .title, .breadcrumbs {
     border-bottom: 1px solid $light_grey;
     overflow: auto;

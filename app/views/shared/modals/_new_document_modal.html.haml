@@ -1,0 +1,5 @@
+.modal.fade.new-document-modal{"aria-hidden" => "true", "aria-labelledby" => "newDocumentModal", :role => "dialog"}
+  .modal-dialog.modal-lg
+    .modal-content
+      =render "documents/form", project_id: @project.id
+

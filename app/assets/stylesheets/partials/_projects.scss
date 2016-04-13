@@ -23,20 +23,6 @@
     margin: 0;
     padding: 15px 12px;
   }
-  .project-toolbar {
-    background-color: $mercury;
-    height: 40px;
-    ul {
-      li {
-         margin: 3px 10px;
-         &.admin {
-           border: 2px solid $orange;
-           padding: 5px;
-           color: $orange;
-         }
-      }
-    }
-  }
   .project-box {
     border: 1px solid $tapa;
     margin-bottom: 15px;

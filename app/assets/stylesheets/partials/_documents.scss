@@ -41,6 +41,9 @@
     li {
       margin: 3px 10px;
       border-bottom: 1px solid $mercury;
+      &.ui-selected {
+        background-color: $light-grey;
+      }
     }
   }
 }

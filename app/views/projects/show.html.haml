@@ -8,16 +8,10 @@
           =@project.title.upcase
       .description
         =@project.description
-      .col-xs-12.col-md-9.primary-content
+      .col-xs-12.primary-content
         -if @documents.exists?
           = render partial: 'documents/doc_toolbar'
           = render partial: 'documents/doc_list'
-      .col-xs-12.col-md-3
-        -if @documents.exists?
-          .doc-panel
-            %h4
-              %i.fa.fa-file-text
-              RECENT DOCUMENTS
     =render 'shared/left_sidebar'
 /* MODALS */
 =render 'shared/modals/new_document_modal'

@@ -463,6 +463,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   mini_backtrace (= 0.1.3)
   minitest-reporters (= 1.0.5)
   mysql2 (~> 0.3.18)

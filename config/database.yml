@@ -1,9 +1,9 @@
-mysql2: &mysql2
-  adapter: mysql2
+postgresql: &postgresql
+  adapter: postgresql
   encoding: utf8
 
 development: &development
-  <<: *mysql2
+  <<: *postgresql
   host:     <%= ENV['DATA_ROOMS_DB_HOST']     %>
   database: <%= ENV['DATA_ROOMS_DB_DATABASE'] %>
   username: <%= ENV['DATA_ROOMS_DB_USER']     %>
@@ -16,14 +16,14 @@ staging:
   <<: *development
 
 test:
-  <<: *mysql2
+  <<: *postgresql
   host:     <%= ENV['DATA_ROOMS_DB_HOST']     %>
   database: <%= ENV['DATA_ROOMS_DB_DATABASE'] %>
   username: <%= ENV['DATA_ROOMS_DB_USER']     %>
   password: <%= ENV['DATA_ROOMS_DB_PASSWORD'] %>
 
 production:
-  <<: *mysql2
+  <<: *postgresql
   host:     <%= ENV['DATA_ROOMS_DB_HOST']     %>
   database: <%= ENV['DATA_ROOMS_DB_DATABASE'] %>
   username: <%= ENV['DATA_ROOMS_DB_USER']     %>

@@ -30,8 +30,10 @@ class User < ActiveRecord::Base
   has_many :memberships, dependent: :delete_all
   has_many :projects, through: :stakeholders
   has_many :stakeholders, dependent: :delete_all
+  
   has_many :assets, dependent: :delete_all
   has_many :documents, through: :assets
+
   has_many :doc_permissions, dependent: :delete_all
   has_many :documents, through: :doc_permissions
 
